@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Falcom4n Custom Ruels</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .navbar-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .navbar-end {
+      margin-left: auto;
+    }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 20px;
+        background-color: #f8f9fa;
+        color: #343a40;
+    }
+    h1 {
+        text-align: center;
+        color: #212529;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        padding: 20px 0;
+        border-bottom: 2px solid #e9ecef;
+    }
+    .rule {
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: flex-start;
+    }
+    .rule img {
+        width: 200px;
+        height: 200px;
+        margin-right: 20px;
+    }
+    .rule-content {
+        flex-grow: 1;
+    }
+    .rule-summary {
+        cursor: pointer;
+        font-weight: bold;
+        position: relative;
+        color: #007bff;
+        padding: 10px;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .rule-summary:hover {
+        background-color: #e9ecef;
+    }
+    .rule-detail {
+        display: none;
+        padding: 10px 15px;
+        border-top: 1px solid #dee2e6;
+        color: #495057;
+    }
+    .sub-section {
+        cursor: pointer;
+        margin: 5px 0;
+        position: relative;
+        font-weight: normal;
+        color: #495057;
+    }
+    .sub-detail {
+        display: none;
+        margin-left: 20px;
+        color: #6c757d;
+    }
+    .tooltip {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 12px;
+        z-index: 1;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+    }
+    .info-icon {
+        margin-left: 5px;
+        cursor: pointer;
+        color: #888;
+        font-size: 14px;
+    }
+    .rule-summary:hover .tooltip,
+    .sub-section:hover .tooltip {
+        display: block;
+    }
+    .rule-summary::after {
+        content: '➕';
+        font-size: 14px;
+    }
+    .rule-summary.active::after {
+        content: '➖';
+    }
+  </style>
+
+<script>
+    function toggleDetail(id) {
+        var detail = document.getElementById(id);
+        var summary = detail.previousElementSibling;
+        detail.style.display = detail.style.display === 'none' ? 'block' : 'none';
+        summary.classList.toggle('active');
+    }
+    function toggleSubDetail(id) {
+        var detail = document.getElementById(id);
+        detail.style.display = detail.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <a class="navbar-brand" href="#">Falcom4n</a>
+
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Content -->
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <!-- Centered Links -->
+        <ul class="navbar-nav navbar-center">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="infoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Info
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="infoDropdown">
+              <li><a class="dropdown-item" href="#">What Is Falco</a></li>
+              <li><a class="dropdown-item" href="#">Why Falco</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="rulesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Rules
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="rulesDropdown">
+              <li><a class="dropdown-item" href="#">Community Rules</a></li>
+              <li><a class="dropdown-item" href="#">Custom Rules</a></li>
+              <li><a class="dropdown-item" href="#">Vendor Rules</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="metricsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Metrics
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="metricsDropdown">
+              <li><a class="dropdown-item" href="#">Statistics</a></li>
+              <li><a class="dropdown-item" href="#">Security Coverage</a></li>
+              <li><a class="dropdown-item" href="#">Maturity</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="securityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Security
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="securityDropdown">
+              <li><a class="dropdown-item" href="#">Threats</a></li>
+              <li><a class="dropdown-item" href="#">Bypasses</a></li>
+              <li><a class="dropdown-item" href="#">Challenges</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- About Link -->
+        <ul class="navbar-nav navbar-end">
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content Section -->
+  <div class="container mt-5">
+    <h1>Falco Custom Rules</h1>
+    <p>A set of custom Falco rules helps detect potential threats in TheOrganization's Kubernetes clusters. These rules monitor and alert on suspicious or unauthorized activities to enhance runtime security.
+    </p>
+  </div>
+
+<!-- Rule 1 -->
+<div class="rule">
+<img src="../assets/memory-dump.jpg" alt="Imagen de Regla 1">
+<div class="rule-content">
+    <div class="rule-summary" onclick="toggleDetail('rule1')">
+        Rule 1: Launch memory dump process in Container [custom]
+        <span class="info-icon" onclick="event.stopPropagation()">ℹ
+            <span class="tooltip">Haz clic para desplegar más información</span>
+        </span>
+    </div>
+    <div class="rule-detail" id="rule1">
+        <div class="sub-section" onclick="toggleSubDetail('desc1')">
+            Description 
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="sub-detail" id="desc1">
+            Detects the execution of processes related to memory dumping. Memory dumping can be used to analyze a process's state, including the extraction of sensitive information. The tools typically used for this purpose include dd, coredumpctl, gcore, memdump, dump2fs, and dotnet-dump.
+        </div>
+
+        <div class="sub-section" onclick="toggleSubDetail('pertinencia1')">
+            Relevance
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="sub-detail" id="pertinencia1">
+            Memory dumps can contain sensitive information, such as credentials, API keys, or user data, that an attacker could extract to compromise the system's security. Detecting their execution allows for the identification of possible data extraction attempts or malicious activities within the cluster.
+        </div>
+
+        <!-- Nuevos detalles añadidos -->
+        <div class="sub-section">
+            <strong>Environment:</strong> Production
+        </div>
+        <div class="sub-section">
+            <strong>Rule status:</strong>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                        aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">
+                    95%
+                </div>
+            </div>
+        </div>
+        <div class="sub-section">
+            <strong>Tags:</strong>
+            <span class="badge bg-secondary me-2">host</span>
+            <span class="badge bg-secondary">container</span>
+            <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+            <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_credential_access</span>
+            <span class="badge bg-secondary me-2">mitre_exfiltration</span>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Rule 2 -->
+<div class="rule">
+<img src="../assets/ngrok-connect.avif" alt="Imagen de Regla 2">
+<div class="rule-content">
+    <div class="rule-summary" onclick="toggleDetail('rule2')">
+        Rule 2: Connect to NGROK Service [Custom]
+        <span class="info-icon" onclick="event.stopPropagation()">ℹ
+            <span class="tooltip">Haz clic para desplegar más información</span>
+        </span>
+    </div>
+    <div class="rule-detail" id="rule2">
+        <div class="sub-section" onclick="toggleSubDetail('desc2')">
+            Description 
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="sub-detail" id="desc2">
+            Detects connections to the NGROK service.
+        </div>
+
+        <div class="sub-section" onclick="toggleSubDetail('pertinencia2')">
+            Relevance
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="sub-detail" id="pertinencia2">
+            Connections to NGROK can create hidden tunnels that expose internal services to the internet, potentially allowing attackers to establish command and control (C2) channels. Detecting these connections helps identify possible malicious activities or data exfiltration attempts, protecting the security of the cluster.
+        </div>
+
+        <div class="sub-section">
+            <strong>Environment:</strong> Production
+        </div>
+        <div class="sub-section">
+            <strong>Rule status:</strong>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                    aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">
+                    90%
+                </div>
+            </div>
+        </div>
+        <div class="sub-section">
+            <strong>Tags:</strong>
+            <span class="badge bg-secondary me-2">host</span>
+            <span class="badge bg-secondary me-2">container</span>
+            <span class="badge me-2" style="background-color: #17a2b8; color: white;">network</span>
+            <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_command_and_control</span>
+            <span class="badge bg-secondary">data_exfiltration</span>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Rule 3 -->
+<div class="rule">
+<img src="../assets/ngrok-configuration.webp" alt="Imagen de Regla 3">
+<div class="rule-content">
+    <div class="rule-summary" onclick="toggleDetail('rule3')">
+        Rule 3: NGROK service download/configuration/start process detected [Custom]
+        <span class="info-icon" onclick="event.stopPropagation()">ℹ
+            <span class="tooltip">Haz clic para desplegar más información</span>
+        </span>
+    </div>
+    <div class="rule-detail" id="rule3">
+        <div class="sub-section" onclick="toggleSubDetail('desc3')">
+            Description 
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="sub-detail" id="desc3">
+            Detect ngrok service download/configuration/start inside host or container.
+        </div>
+
+        <div class="sub-section" onclick="toggleSubDetail('pertinencia3')">
+            Relevance
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="sub-detail" id="pertinencia3">
+            The execution of Ngrok poses a serious security risk in containerized environments and hosts by enabling external access to internal services. This unauthorized exposure can lead to data breaches, as attackers may use Ngrok to tunnel traffic and bypass security controls. Additionally, its use may indicate a compromised system, allowing attackers to maintain persistence or exfiltrate data.
+        </div>
+
+        <!-- Nuevos detalles añadidos -->
+        <div class="sub-section">
+            <strong>Enviroment:</strong> Production
+        </div>
+        <div class="sub-section">
+            <strong>Rule status:</strong>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                        aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">
+                    95%
+                </div>
+            </div>
+        </div>
+        <div class="sub-section">
+            <strong>Tags:</strong>
+            <span class="badge bg-secondary me-2">host</span>
+            <span class="badge bg-secondary me-2">container</span>
+            <span class="badge me-2" style="background-color: #17a2b8; color: white;">network</span>
+            <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_command_and_control</span>
+        </div>
+    </div>
+</div>
+</div>
+
+
+    <!-- Rule 4 -->
+<div class="rule">
+    <img src="../assets/k8s-malicious-tools.webp" alt="Imagen de Regla 4">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule4')">
+            Rule 4: Launch malicious Kubernetes Tools inside a Node [Custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule4">
+            <div class="sub-section" onclick="toggleSubDetail('desc4')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc4">
+                This rule detects the execution of malicious tools or penetration testing activities within a Kubernetes cluster, indicating potential security threats.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia4')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia4">
+                Detecting the use of tools related to penetration testing or malicious activities within a Kubernetes cluster is important. Tools like peirates, kubeshark etc. can gather sensitive information about the cluster’s configuration, aiding attackers in finding vulnerabilities. Identifying these tools reduces the risk of unauthorized access, reconnaissance, and lateral movement within the cluster.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                        70%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary me-2">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_discovery</span>
+                <span class="badge bg-secondary me-2">mitre_execution</span>
+                <span class="badge" style="background-color: #dc3545; color: white;">IRT_Alert</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 5 -->
+<div class="rule">
+    <img src="../assets/sql-injection-tools.png" alt="Imagen de Regla 5">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule5')">
+            Rule 5: SQL injection tools detected in Container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule5">
+            <div class="sub-section" onclick="toggleSubDetail('desc5')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc5">
+                Detection of SQL injection tools executed inside a container.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia5')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia5">
+                Detecting SQL injection tools within containers in a Kubernetes environment helps prevent unauthorized database access and potential data exfiltration risks.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary me-2">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">database</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_exfiltration</span>
+                <span class="badge" style="background-color: #dc3545; color: white;">IRT_Alert</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 6 -->
+<div class="rule">
+    <img src="../rules/" alt="Imagen de Regla 6">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule6')">
+            Rule 6: SQL injection patterns detected inside Container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule6">
+            <div class="sub-section" onclick="toggleSubDetail('desc6')">
+                Description
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc6">
+                Web applications may be vulnerable to SQL injection attacks, allowing malicious manipulation of database queries. These attacks often involve the unauthorized insertion of SQL code through the application's input parameters.
+    Access patterns to the database that deviate from standard SQL queries, such as attempts to concatenate or manipulate parameters, can be considered suspicious behavior.
+    This rule includes the detection of failed attempts to execute malicious SQL queries, which may indicate potential SQL injection attempts.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia6')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia6">
+                Detecting suspicious SQL patterns helps identify potential SQL injection attempts, highlighting unusual database queries that could indicate unauthorized access efforts within containerized applications.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                        60%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary me-2">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">database</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_exfiltration</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 7 -->
+<div class="rule">
+    <img src="../assets/scanner-automated-tool.png" alt="Imagen de Regla 7">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule7')">
+            Rule 7: Scanner or Automated Tool launched in Container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule7">
+            <div class="sub-section" onclick="toggleSubDetail('desc7')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc7">
+                Detection of vulnerability scanners or automated reconnaissance tools executed within a container.
+  These tools may indicate unauthorized exploration or security probing attempts, potentially aiming to identify exploitable weaknesses in the containerized environment.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia7')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia7">
+                Detect the execution of scanning or automated vulnerability tools within containers. Such tools, if run by unauthorized users, can indicate potential reconnaissance or discovery efforts, which pose risks to container security by probing for weaknesses. Detecting these processes helps prevent misuse and alerts security teams to potential threats.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+                        80%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary me-2">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">network</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_discovery</span>
+                <span class="badge bg-secondary me-2">mitre_reconnaissance</span>
+                <span class="badge" style="background-color: #dc3545; color: white;">IRT_Alert</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 8 -->
+<div class="rule">
+    <img src="../assets/connect-VPN-Tunnel-Proxy.jpg" alt="Imagen de Regla 8">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule8')">
+            Rule 8: Connect to VPN/Tunnel or Proxy Server [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule8">
+            <div class="sub-section" onclick="toggleSubDetail('desc8')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc8">
+  Detects attempts to establish connections to VPNs, tunnels, or proxy servers from within a container.
+  Such connections may be used for evading network monitoring, concealing malicious activities, or facilitating unauthorized communication and lateral movement within the environment.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia8')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia8">
+                Detecting connections to VPNs, tunnels, or proxy servers from within containers can reveal attempts at defense evasion or unauthorized lateral movement. Monitoring such outbound connections helps prevent covert data exfiltration and bypassing of network monitoring, strengthening security in containerized environments.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                        80%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">network</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_defense_evasion</span>
+                <span class="badge bg-secondary">mitre_command_and_control</span>
+                <span class="badge" style="background-color: #dc3545; color: white;">IRT_Alert</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 9 -->
+<div class="rule">
+    <img src="../assets/kubectl-suspicious-commands.jpg" alt="Imagen de Regla 9">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule9')">
+            Rule 9: Kube Suspicious Command launched in a Container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule9">
+            <div class="sub-section" onclick="toggleSubDetail('desc9')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc9">
+                Detects the execution of potentially malicious tools or those used for penetration testing within a Kubernetes cluster.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia9')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia9">
+                Identifying these tools helps mitigate risks of unauthorized access and data exposure, improving cluster security.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                        70%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_discovery</span>
+                <span class="badge bg-secondary me-2"></span>
+                <span class="badge" style="background-color: #dc3545; color: white;">IRT_Alert</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 10 -->
+<div class="rule">
+    <img src="../assets/unauthorized-access.png" alt="Imagen de Regla 10">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule10')">
+            Rule 10: Random
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule10">
+            <div class="sub-section" onclick="toggleSubDetail('desc10')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc10">
+                Detects attempts to access the Kubernetes API without proper authorization.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia10')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia10">
+                Unauthorized access to the API can lead to data breaches or changes in the cluster’s configuration.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">mitre_credential_access</span>
+                <span class="badge bg-secondary">api_access</span>
+                <span class="badge bg-secondary">kubernetes</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Rule 11 -->
+<div class="rule">
+    <img src="../assets/loadtesting-benchmarking-utility.png" alt="Imagen de Regla 11">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule11')">
+            Rule 11: Load tester/benchmarking utility detected inside a container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule11">
+            <div class="sub-section" onclick="toggleSubDetail('desc11')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc11">
+  Detects the execution of load testing or benchmarking utilities within a container.
+  These tools are typically used to assess the performance and scalability of applications, but their unauthorized use could indicate potential abuse, such as resource exhaustion or testing without permission, leading to performance degradation or denial-of-service conditions.
+
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia11')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia11">
+                Detect the execution of load tester or benchmarking utilities within containers, which could indicate unauthorized stress testing or performance benchmarking. Such activities, if not properly monitored, may lead to resource exhaustion, potential denial-of-service attacks, or misuse of containerized environments for malicious purposes.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                        90%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">network</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_impact</span>
+                <span class="badge" style="background-color: #dc3545; color: white;">IRT_Alert</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 12 -->
+<div class="rule">
+    <img src="../assets/exploitation-attempt.png" alt="Imagen de Regla 12">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule12')">
+            Rule 12: Exploitation attempt detected inside a container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule12">
+            <div class="sub-section" onclick="toggleSubDetail('desc12')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc12">
+                Detects attempts to execute exploitation tools, such as Metasploit, or access critical files associated with these tools within a container environment. Monitors for known exploitation binaries and paths often linked to vulnerability testing frameworks.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia12')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia12">
+                Detecting exploitation attempts within containers helps identify unauthorized use of Metasploit tools and interactions with critical files, preventing potential security breaches and ensuring the integrity of containerized applications.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_execution</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Rule 13 -->
+    <div class="rule">
+        <img src="../assets/bad_permissions.png" alt="Imagen de Regla 13">
+        <div class="rule-content">
+            <div class="rule-summary" onclick="toggleDetail('rule13')">
+                Rule 13: Privilege Escalation behavior detected based bad permissions [custom]
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="rule-detail" id="rule13">
+                <div class="sub-section" onclick="toggleSubDetail('desc13')">
+                    Description 
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="desc13">
+                    Detects privilege escalation attempts within a container through searches for files with potentially insecure permissions, such as write access for multiple users or overly permissive access levels. This rule monitors the use of commands like "find" with specific arguments that indicate checks for misconfigured file permissions, which could expose sensitive resources to unauthorized modification or access.
+                </div>
+
+                <div class="sub-section" onclick="toggleSubDetail('pertinencia13')">
+                    Relevance
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="pertinencia13">
+                    This rule helps detect privilege escalation attempts in containers by monitoring processes searching for files with insecure permissions. In Kubernetes environments, where workloads share resources, identifying these permission-based security risks is key to preventing potential privilege misuse and limiting attack surfaces within containers.
+                </div>
+
+                <div class="sub-section">
+                    <strong>Environment:</strong> Production
+                </div>
+                <div class="sub-section">
+                    <strong>Rule status:</strong>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                            90%
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section">
+                    <strong>Tags:</strong>
+                    <span class="badge bg-secondary">host</span>
+                    <span class="badge bg-secondary">container</span>
+                    <span class="badge me-2" style="background-color: #17a2b8; color: white;">filesystem</span>
+                    <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_privilege_escalation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rule 14 -->
+    <div class="rule">
+        <img src="../assets/privesc-suid.jpeg" alt="Imagen de Regla 14">
+        <div class="rule-content">
+            <div class="rule-summary" onclick="toggleDetail('rule14')">
+                Rule 14: Privilege Escalation behavior based SUID/GUID detected [custom]
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="rule-detail" id="rule14">
+                <div class="sub-section" onclick="toggleSubDetail('desc14')">
+                    Description 
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="desc14">
+                    Detects potential privilege escalation attempts by identifying processes that search for files or directories with special permissions, such as SUID/SGID or sticky bits, which could grant unauthorized access within containerized environments..
+                </div>
+
+                <div class="sub-section" onclick="toggleSubDetail('pertinencia14')">
+                    Relevance
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="pertinencia14">
+                    
+This rule helps detect privilege escalation attempts within containerized environments by monitoring for processes that search for files or directories with SUID/SGID or sticky bit permissions, often targeted for unauthorized privilege gain. In Kubernetes-based container systems, these detections are important for maintaining security boundaries, as misused SUID/SGID files can allow elevated access, posing a risk to container isolation and overall cluster security.
+                </div>
+
+                <div class="sub-section">
+                    <strong>Environment:</strong> Production
+                </div>
+                <div class="sub-section">
+                    <strong>Rule status:</strong>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                             aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                            90%
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section">
+                    <strong>Tags:</strong>
+                    <span class="badge bg-secondary">host</span>
+                    <span class="badge bg-secondary">container</span>
+                    <span class="badge me-2" style="background-color: #17a2b8; color: white;">filesystem</span>
+                    <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_privilege_escalation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rule 15 -->
+    <div class="rule">
+        <img src="../assets/privesc_tools_patterns.webp" alt="Imagen de Regla 15">
+        <div class="rule-content">
+            <div class="rule-summary" onclick="toggleDetail('rule15')">
+                Rule 15: Privilege Escalation Tools/Patterns detected [custom]
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="rule-detail" id="rule15">
+                <div class="sub-section" onclick="toggleSubDetail('desc15')">
+                    Description 
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="desc15">
+                    Detects the use of common privilege escalation tools and scripts often employed for vulnerability enumeration or exploiting misconfigurations. This rule identifies command-line patterns associated with tools like LinPEAS, Linux Priv Checker, and other scripts typically used to escalate privileges within a containerized environment. The detection of these tools indicates potential attempts to exploit system vulnerabilities or misconfigurations to gain elevated access.
+                </div>
+
+                <div class="sub-section" onclick="toggleSubDetail('pertinencia15')">
+                    Relevance
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="pertinencia15">
+                    Detecting known tools and scripts associated with privilege escalation or vulnerability enumeration helps reveal unauthorized activities early, allowing for prompt intervention before a security breach occurs. This detection layer strengthens container security by identifying specific exploitation methods and tools, supporting proactive measures against privilege escalation threats.
+                </div>
+
+                <div class="sub-section">
+                    <strong>Environment:</strong> Production
+                </div>
+                <div class="sub-section">
+                    <strong>Rule status:</strong>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                             aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                            90%
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section">
+                    <strong>Tags:</strong>
+                    <span class="badge bg-secondary">host</span>
+                    <span class="badge bg-secondary">container</span>
+                    <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                    <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_privilege_escalation</span>
+                    <span class="badge" style="background-color: #dc3545; color: white;">IRT_Alert</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rule 16 -->
+    <div class="rule">
+        <img src="../assets/mitm.avif" alt="Imagen de Regla 16">
+        <div class="rule-content">
+            <div class="rule-summary" onclick="toggleDetail('rule16')">
+                Rule 16: MiTM behavior detected inside a container [custom]
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="rule-detail" id="rule16">
+                <div class="sub-section" onclick="toggleSubDetail('desc16')">
+                    Description 
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="desc16">
+                    Detects the execution of known Man-in-the-Middle (MiTM) tools and suspicious network manipulation patterns inside containers. This includes activities like DNS spoofing and enabling IP forwarding to intercept traffic.
+                </div>
+
+                <div class="sub-section" onclick="toggleSubDetail('pertinencia16')">
+                    Relevance
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="pertinencia16">
+                    Detecting MiTM (Man-in-the-Middle) behavior within a container environment is important for identifying potential network attacks that could intercept or manipulate traffic. Tools like Ettercap, Bettercap, and SSLStrip, commonly used for MiTM attacks, can pose a significant security risk if misused. In a containerized environment, especially one managed by Kubernetes, ensuring that these tools are not being executed can help prevent malicious activities that could compromise data integrity or confidentiality.
+                </div>
+
+                <div class="sub-section">
+                    <strong>Environment:</strong> Production
+                </div>
+                <div class="sub-section">
+                    <strong>Rule status:</strong>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                            90%
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section">
+                    <strong>Tags:</strong>
+                    <span class="badge bg-secondary">host</span>
+                    <span class="badge bg-secondary">container</span>
+                    <span class="badge me-2" style="background-color: #17a2b8; color: white;">network</span>
+                    <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_credential_access</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rule 17 -->
+    <div class="rule">
+        <img src="../assets/bad-curl.jpg" alt="Imagen de Regla 17">
+        <div class="rule-content">
+            <div class="rule-summary" onclick="toggleDetail('rule17')">
+                Rule 17: Suspicious Curl Activities [custom]
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="rule-detail" id="rule17">
+                <div class="sub-section" onclick="toggleSubDetail('desc17')">
+                    Description 
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="desc17">
+                    Detects potentially dangerous curl commands in containers, focusing on command injection, malicious User-Agent headers, SQL injection patterns, and suspicious use of proxies or tracing options.
+                </div>
+
+                <div class="sub-section" onclick="toggleSubDetail('pertinencia17')">
+                    Relevance
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="pertinencia17">
+                    curl is often used by attackers for data exfiltration, remote command execution, and probing network defenses. In Kubernetes environments, where containers communicate over a shared network, such actions can facilitate lateral movement, privilege escalation, or access to sensitive data.
+                </div>
+
+                <div class="sub-section">
+                    <strong>Environment:</strong> Production
+                </div>
+                <div class="sub-section">
+                    <strong>Rule status:</strong>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                             aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+                            80%
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section">
+                    <strong>Tags:</strong>
+                    <span class="badge bg-secondary me-2">host</span>
+                    <span class="badge bg-secondary">container</span>
+                    <span class="badge me-2" style="background-color: #17a2b8; color: white;">network</span>
+                    <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_execution</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rule 18 -->
+    <div class="rule">
+        <img src="../assets/container-escape-behaviors.jpg" alt="Imagen de Regla 18">
+        <div class="rule-content">
+            <div class="rule-summary" onclick="toggleDetail('rule18')">
+                Rule 18: Container escapes behaviors detected inside a container [custom]
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="rule-detail" id="rule18">
+                <div class="sub-section" onclick="toggleSubDetail('desc18')">
+                    Description 
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="desc18">
+                    Detects enumeration and execution attempts related to container escape tools inside a container.
+                </div>
+
+                <div class="sub-section" onclick="toggleSubDetail('pertinencia18')">
+                    Relevance
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="pertinencia18">
+                    It helps detect potential container escape attempts by monitoring the execution of known tools and scripts commonly used in escape techniques, providing an early warning of malicious activity.
+                </div>
+
+                <div class="sub-section">
+                    <strong>Environment:</strong> Production
+                </div>
+                <div class="sub-section">
+                    <strong>Rule status:</strong>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                             aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                            85%
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section">
+                    <strong>Tags:</strong>
+                    <span class="badge bg-secondary me-2">host</span>
+                    <span class="badge me-2" style="background-color: #17a2b8; color: white;">container</span>
+                    <span class="badge bg-secondary me-2">process</span>
+                    <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_privilege_escalation</span>
+                    <span class="badge bg-secondary me-2">mitre_discovery</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rule 19 -->
+    <div class="rule">
+        <img src="../assets/core_pattern_escape.png" alt="Imagen de Regla 19">
+        <div class="rule-content">
+            <div class="rule-summary" onclick="toggleDetail('rule19')">
+                Rule 19: Container escape behavior based core pattern [custom]
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="rule-detail" id="rule19">
+                <div class="sub-section" onclick="toggleSubDetail('desc19')">
+                    Description 
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="desc19">
+                    Detects unauthorized changes to the core dump configuration file (core_pattern), an integral component within Linux systems. This behavior can lead to a container escape.
+                </div>
+
+                <div class="sub-section" onclick="toggleSubDetail('pertinencia19')">
+                    Relevance
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="pertinencia19">
+                    It helps identify attempts to manipulate core dump settings, which can be used for escaping container isolation. By monitoring changes to core_pattern, it provides an early warning of potential attacks, ensuring the integrity and security of the containerized applications and the host system.
+                </div>
+
+                <div class="sub-section">
+                    <strong>Environment:</strong> Production
+                </div>
+                <div class="sub-section">
+                    <strong>Rule status:</strong>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                            90%
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section">
+                    <strong>Tags:</strong>
+                    <span class="badge bg-secondary me-2">host</span>
+                    <span class="badge me-2" style="background-color: #17a2b8; color: white;">container</span>
+                    <span class="badge bg-secondary me-2">process</span>
+                    <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_privilege_escalation</span>
+                    <span class="badge bg-secondary me-2">mitre_lateral_movement</span>
+                    <span class="badge bg-secondary me-2">mitre_exfiltration</span>
+                    <span class="badge bg-secondary me-2">mitre_execution</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rule 20 -->
+    <div class="rule">
+        <img src="../assets/binfmt_misc.jpg" alt="Imagen de Regla 20">
+        <div class="rule-content">
+            <div class="rule-summary" onclick="toggleDetail('rule20')">
+                Rule 20: Container escape behavior based binfmt_misc [custom]
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="rule-detail" id="rule20">
+                <div class="sub-section" onclick="toggleSubDetail('desc20')">
+                    Description 
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="desc20">
+                    Detects attempts to modify the /proc/sys/fs/binfmt_misc file, which can grant an attacker root access and enable container escape.
+                </div>
+
+                <div class="sub-section" onclick="toggleSubDetail('pertinencia20')">
+                    Relevance
+                    <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                        <span class="tooltip">Haz clic para desplegar más información</span>
+                    </span>
+                </div>
+                <div class="sub-detail" id="pertinencia20">
+                    It helps prevent container escape attempts through the manipulation of binfmt_misc settings. By monitoring unauthorized write operations to this file, the rule offers early detection of potential privilege escalation, helping to maintain the security and isolation of the containerized environment.
+                </div>
+
+                <div class="sub-section">
+                    <strong>Environment:</strong> Production
+                </div>
+                <div class="sub-section">
+                    <strong>Rule status:</strong>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                             aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                            90%
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section">
+                    <strong>Tags:</strong>
+                    <span class="badge bg-secondary me-2">host</span>
+                    <span class="badge me-2" style="background-color: #17a2b8; color: white;">container</span>
+                    <span class="badge bg-secondary me-2">process</span>
+                    <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_privilege_escalation</span>
+                    <span class="badge bg-secondary me-2">mitre_lateral_movement</span>
+                    <span class="badge bg-secondary">mitre_defense_evasion</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Rule 26 -->
+<div class="rule">
+    <img src="../assets/webscanner-process.png" alt="Imagen de Regla 26">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule26')">
+            Rule 26: Web Scanner process detected inside a container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule26">
+            <div class="sub-section" onclick="toggleSubDetail('desc26')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc26">
+                Detects the execution of web scanner tools like Burp Suite and ZAP inside a container, which could indicate security testing or malicious activity. This rule triggers on specific process commands and related files associated with these tools.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia26')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia26">
+                Detecting web scanner processes like Burp Suite and ZAP inside containers can help identify potential security risks, such as unauthorized scanning or vulnerability exploitation attempts. In a Kubernetes-based environment, these tools are often used for reconnaissance or privilege escalation, making it important to monitor their usage to prevent malicious activities.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+                        75%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary me-2">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_discovery</span>
+                <span class="badge bg-secondary">mitre_execution</span>
+                <span class="badge bg-secondary me-2">mitre_reconnaissance</span>
+                <span class="badge" style="background-color: #dc3545; color: white;">IRT_Alert</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 27 -->
+<div class="rule">
+    <img src="../assets/secrets.jpeg" alt="Imagen de Regla 27">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule27')">
+            Rule 27: Keys extraction activity detected in container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule27">
+            <div class="sub-section" onclick="toggleSubDetail('desc27')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc27">
+                Detects attempts to access or modify sensitive files within a container, potentially leading to security breaches.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia27')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia27">
+                It enables the detection of unauthorized attempts to access sensitive information, such as API keys and passwords. By identifying these potential threats, it enhances overall security and helps prevent data breaches in dynamic, shared environments, where the risk of exposure is heightened.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">
+                        95%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">filesystem</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_credential_access</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 28 -->
+<div class="rule">
+    <img src="../assets/linux-with-syzkaller.webp" alt="Imagen de Regla 28">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule28')">
+            Rule 28: Fuzzy tools detected in container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule28">
+            <div class="sub-section" onclick="toggleSubDetail('desc28')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc28">
+                Detects the execution of fuzzing tools, including web application fuzzers and AFL-related binaries, within containers to identify vulnerabilities or perform unauthorized testing.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia28')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia28">
+                Detecting fuzzing tools within Kubernetes containers helps identify potential misuse of web application fuzzers or binary fuzzers, which could indicate an attempt to exploit vulnerabilities in applications running inside the containers.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_discovery</span>
+                <span class="badge bg-secondary me-2">mitre_reconnaissance</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 29 -->
+<div class="rule">
+    <img src="../assets/nosql-injection.png" alt="Imagen de Regla 29">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule29')">
+            Rule 29: NoSQL injection behaviors detected inside the container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule29">
+            <div class="sub-section" onclick="toggleSubDetail('desc29')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc29">
+                Detects the use of NoSQL injection tools, such as nosqli, nosqlmap, and similar utilities, inside a container. These tools are commonly used to exploit NoSQL database vulnerabilities and perform unauthorized queries or attacks.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia29')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia29">
+                detecting potential NoSQL injection tools that could exploit database vulnerabilities. It helps mitigate risks such as unauthorized data access, privilege escalation, or data exfiltration, which can compromise the security and integrity of applications within the cluster.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+                        75%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">database</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_exfiltration</span>
+                <span class="badge bg-secondary me-2">mitre_credential_accesss</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 30 -->
+<div class="rule">
+    <img src="../assets/enhanced-network.svg" alt="Imagen de Regla 30">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule30')">
+            Rule 30: Launch Advanced Network Toolset in container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule30">
+            <div class="sub-section" onclick="toggleSubDetail('desc30')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc30">
+                Detects the use of advanced networking tools within a container that could indicate malicious activity, such as packet crafting or traffic retransmission. These tools may be used to manipulate network traffic, simulate attacks, or evade detection in Kubernetes environments.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia30')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia30">
+                This rule allows detect and mitigate the use of advanced networking tools that could enable malicious activities like packet crafting or traffic retransmission. These actions pose significant security risks, including unauthorized network manipulation, data exfiltration, or facilitating lateral movement within the cluster, potentially leading to larger-scale breaches. By identifying such behavior early, this rule helps protect containerized workloads from advanced network-based attacks.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                        90%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">network</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_discovery</span>
+                <span class="badge" style="background-color: #dc3545; color: white;">IRT_Alert</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Rule 31 -->
+<div class="rule">
+    <img src="../assets/CVE-2022-23648.jpg" alt="Imagen de Regla 31">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule31')">
+            Rule 31: Arbitrary Host File Access from containers launched by containerd CRI (CVE-2022-23648) [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule31">
+            <div class="sub-section" onclick="toggleSubDetail('desc31')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc31">
+                Detects attempts to escape from container isolation, which could lead to unauthorized access to the host system.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia31')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia31">
+                Detecting escape attempts helps maintain isolation between containers and the host, preserving security boundaries.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Development
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                        90%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">container</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">privilege_escalation</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 32 -->
+<div class="rule">
+    <img src="../assets/capability-warning.svg" alt="Imagen de Regla 32">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule32')">
+            Rule 32: volumes exec sync containerd [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule32">
+            <div class="sub-section" onclick="toggleSubDetail('desc32')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc32">
+                Flags when containers attempt to use capabilities that are not permitted, which may indicate a misconfiguration or a potential attack.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia32')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia32">
+                Monitoring capability usage helps in enforcing least privilege policies within container environments.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Staging
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+                        75%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">capabilities</span>
+                <span class="badge bg-secondary">security</span>
+                <span class="badge bg-secondary">container</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 33 -->
+<div class="rule">
+    <img src="../assets/process-name-detection.svg" alt="Imagen de Regla 33">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule33')">
+            Rule 33: Random 33 [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule33">
+            <div class="sub-section" onclick="toggleSubDetail('desc33')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc33">
+                Identifies anomalies in process names that could indicate malicious activity or unauthorized access attempts.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia33')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia33">
+                Monitoring for unexpected process names is critical for detecting potential intrusions in container environments.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">process_monitoring</span>
+                <span class="badge bg-secondary">anomaly_detection</span>
+                <span class="badge bg-secondary">security</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 34 -->
+<div class="rule">
+    <img src="../assets/process-name-detection.svg" alt="Imagen de Regla 34">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule34')">
+            Rule 34: Random 34 [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule34">
+            <div class="sub-section" onclick="toggleSubDetail('desc34')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc34">
+                Identifies anomalies in process names that could indicate malicious activity or unauthorized access attempts.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia34')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia34">
+                Monitoring for unexpected process names is critical for detecting potential intrusions in container environments.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">process_monitoring</span>
+                <span class="badge bg-secondary">anomaly_detection</span>
+                <span class="badge bg-secondary">security</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 35 -->
+<div class="rule">
+    <img src="../assets/process-name-detection.svg" alt="Imagen de Regla 35">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule35')">
+            Rule 35: p3regrinus detection patterns (Catalogar tipo de malware) [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule35">
+            <div class="sub-section" onclick="toggleSubDetail('desc35')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc35">
+                Rootkit behaviors, backdoor behaviors inside a container.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia35')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia35">
+                Monitoring for unexpected process names is critical for detecting potential intrusions in container environments.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">process_monitoring</span>
+                <span class="badge bg-secondary">anomaly_detection</span>
+                <span class="badge bg-secondary">security</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 36 -->
+<div class="rule">
+    <img src="../assets/process-name-detection.svg" alt="Imagen de Regla 36">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule36')">
+            Rule 36: Random 36 [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule36">
+            <div class="sub-section" onclick="toggleSubDetail('desc36')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc36">
+                Identifies anomalies in process names that could indicate malicious activity or unauthorized access attempts.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia36')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia36">
+                Monitoring for unexpected process names is critical for detecting potential intrusions in container environments.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">process_monitoring</span>
+                <span class="badge bg-secondary">anomaly_detection</span>
+                <span class="badge bg-secondary">security</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 37 -->
+<div class="rule">
+    <img src="../assets/process-name-detection.svg" alt="Imagen de Regla 37">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule37')">
+            Rule 37: Random 37 [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule37">
+            <div class="sub-section" onclick="toggleSubDetail('desc37')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc37">
+                Identifies anomalies in process names that could indicate malicious activity or unauthorized access attempts.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia37')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia37">
+                Monitoring for unexpected process names is critical for detecting potential intrusions in container environments.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">process_monitoring</span>
+                <span class="badge bg-secondary">anomaly_detection</span>
+                <span class="badge bg-secondary">security</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rule 38 -->
+<div class="rule">
+    <img src="../assets/process-name-detection.svg" alt="Imagen de Regla 38">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule38')">
+            Rule 38: Random 38 [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule38">
+            <div class="sub-section" onclick="toggleSubDetail('desc38')">
+                Description 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc38">
+                Identifies anomalies in process names that could indicate malicious activity or unauthorized access attempts.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia38')">
+                Relevance
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia38">
+                Monitoring for unexpected process names is critical for detecting potential intrusions in container environments.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Production
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+                        85%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">process_monitoring</span>
+                <span class="badge bg-secondary">anomaly_detection</span>
+                <span class="badge bg-secondary">security</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
