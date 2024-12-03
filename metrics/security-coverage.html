@@ -27,40 +27,35 @@
     footer p {
         margin: 0;
     }
+    .metric-label {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #4CAF50; /* Verde */
+      text-align: center;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <!-- Logo -->
       <a class="navbar-brand" href="#">Falcom4n</a>
-
-      <!-- Navbar Toggle -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <!-- Navbar Content -->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <!-- Centered Links -->
         <ul class="navbar-nav navbar-center">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
-          </li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../index.html">Home</a></li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="infoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Info
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" id="infoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Info</a>
             <ul class="dropdown-menu" aria-labelledby="infoDropdown">
               <li><a class="dropdown-item" href="#">What Is Falco</a></li>
               <li><a class="dropdown-item" href="#">Why Falco</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="rulesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Rules
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" id="rulesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Rules</a>
             <ul class="dropdown-menu" aria-labelledby="rulesDropdown">
               <li><a class="dropdown-item" href="community-rules.html">Community Rules</a></li>
               <li><a class="dropdown-item" href="custom-rules.html">Custom Rules</a></li>
@@ -68,9 +63,7 @@
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="metricsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Metrics
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" id="metricsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Metrics</a>
             <ul class="dropdown-menu" aria-labelledby="metricsDropdown">
               <li><a class="dropdown-item" href="statistics.html">Statistics</a></li>
               <li><a class="dropdown-item" href="security-coverage.html">Security Coverage</a></li>
@@ -78,9 +71,7 @@
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="securityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Security
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" id="securityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Security</a>
             <ul class="dropdown-menu" aria-labelledby="securityDropdown">
               <li><a class="dropdown-item" href="#">Threats</a></li>
               <li><a class="dropdown-item" href="#">Bypasses</a></li>
@@ -88,12 +79,8 @@
             </ul>
           </li>
         </ul>
-
-        <!-- About Link -->
         <ul class="navbar-nav navbar-end">
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
         </ul>
       </div>
     </div>
@@ -101,21 +88,24 @@
 
   <!-- Content Section -->
   <div class="container mt-5">
-    <h1>Welcome to security-coverage</h1>
-    <p>This is a simple landing page template with a responsive navbar using Bootstrap 5.</p>
-  </div>
+    <h1>Security Coverage</h1>
+    <p>How well Falco's rules cover potential attack vectors.</p>
 
 
 
+        <!-- Indicador de métrica -->
+        <div class="mt-5">
+          <h3>Security coverage based on MITRE tactics</h3>
+          <div class="metric-label">86.66%</div>
+        </div>
 
+    <!-- Button to Toggle MITRE Table -->
+    <div class="mt-4 text-center">
+      <button id="toggleButton" class="btn btn-primary">Show MITRE Table</button>
+    </div>
 
-  <main class="container mt-4">
-    <!-- Sección para insertar contenido dinámico como una tabla -->
-    <section id="main-content">
-      <h2>Contenido principal</h2>
-      <p>Esta es una sección donde puedes agregar una tabla o cualquier otro contenido.</p>
-
-
+    <!-- MITRE Table -->
+    <div id="mitreTable" class="mt-4" style="display: none;">
       <h2>Falco MITRE Rule Matrix</h2>
       <table>
           <thead>
@@ -244,15 +234,106 @@
           </tbody>
       </table>
       <p>To learn more about Falco, visit the <a href="https://falco.org/">homepage</a> or get started on <a href="https://github.com/falcosecurity/falco">GitHub</a>!</p>
-    </section>
-  </main>
+    </div>
+
+    <h3>Security coverage based on detection surface</h3>
+    <p>Esta es una sección donde puedes agregar una tabla o cualquier otro contenido.</p>
+
+    <div class="container my-5">
+      <h2 class="text-center">Rules Coverage</h2>
+      
+      <!-- Botón para mostrar/ocultar la tabla -->
+      <div class="mt-4 text-center">
+        <button id="toggleCoverageButton" class="btn btn-primary">Coverage Based Detection Surface</button>
+      </div>
+      
+      <!-- Tabla Rules Coverage -->
+      <div id="rulesCoverageTable" class="table-responsive" style="display: none;">
+        <table class="table table-striped table-bordered text-center">
+          <thead class="table-dark">
+            <tr>
+              <th>Primary Attack Surface</th>
+              <th>Number of Rules</th>
+              <th>Coverage (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>filesystem</td>
+              <td>12</td>
+              <td>31.58%</td>
+            </tr>
+            <tr>
+              <td>database</td>
+              <td>1</td>
+              <td>2.63%</td>
+            </tr>
+            <tr>
+              <td>shell</td>
+              <td>1</td>
+              <td>2.63%</td>
+            </tr>
+            <tr>
+              <td>container</td>
+              <td>8</td>
+              <td>21.05%</td>
+            </tr>
+            <tr>
+              <td>users</td>
+              <td>3</td>
+              <td>7.89%</td>
+            </tr>
+            <tr>
+              <td>network</td>
+              <td>8</td>
+              <td>21.05%</td>
+            </tr>
+            <tr>
+              <td>process</td>
+              <td>5</td>
+              <td>13.16%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+
+  </div>
+
+
+
+  <script>
+    // document.getElementById('toggleButton').addEventListener('click', function () {
+    //   const mitreTable = document.getElementById('mitreTable');
+    //   if (mitreTable.style.display === 'none') {
+    //     mitreTable.style.display = 'block';
+    //     this.textContent = 'Hide MITRE Table';
+    //   } else {
+    //     mitreTable.style.display = 'none';
+    //     this.textContent = 'Show MITRE Table';
+    //   }
+    // });
+
+      // Mostrar/ocultar la tabla de "MITRE"
+  document.getElementById('toggleButton').addEventListener('click', function () {
+    const mitreTable = document.getElementById('mitreTable');
+    mitreTable.style.display = mitreTable.style.display === 'none' ? 'block' : 'none';
+  });
+
+
+      // Mostrar/ocultar la tabla de "Rules Coverage"
+  document.getElementById('toggleCoverageButton').addEventListener('click', function () {
+    const rulesCoverageTable = document.getElementById('rulesCoverageTable');
+    rulesCoverageTable.style.display = rulesCoverageTable.style.display === 'none' ? 'block' : 'none';
+  });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<!-- Footer -->
 <footer>
-    <p>Falco Team</p>
-    <p>Mercado Libre - Observability Security</p>
-    <p>&copy; 2024</p>
+  <p>Falco Team</p>
+  <p>Mercado Libre - Observability Security</p>
+  <p>&copy; 2024</p>
 </footer>
 </html>
