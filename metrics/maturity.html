@@ -14,6 +14,15 @@
     .navbar-end {
       margin-left: auto;
     }
+    .metric-card {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .metric-header {
+            text-align: center;
+        }
     footer {
         background-color: #000000;
         color: white;
@@ -111,18 +120,127 @@
     </div>
   </nav>
 
-  <!-- Content Section -->
+  <!-- Dashboard Content -->
   <div class="container mt-5">
-    <h1>Welcome to maturity</h1>
-    <p>This is a simple landing page template with a responsive navbar using Bootstrap 5.</p>
-    <!-- Chart Section -->
-    <div class="chart-container mt-5">
-      <div class="chart-wrapper">
-        <h3>Detection Coverage</h3>
-        <canvas id="coverageChart"></canvas>
+    <h1 class="text-center">Dashboard de Madurez de Falco</h1>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="metric-card bg-light">
+          <h4 class="metric-header">Cobertura de Detección</h4>
+          <canvas id="deteccionChart"></canvas>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="metric-card bg-light">
+          <h4 class="metric-header">Tasa de Falsos Positivos/Negativos</h4>
+          <canvas id="falsosChart"></canvas>
+        </div>
       </div>
     </div>
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <div class="metric-card bg-light">
+          <h4 class="metric-header">Tiempo de Respuesta</h4>
+          <p class="text-center" id="tiempoRespuesta"></p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="metric-card bg-light">
+          <h4 class="metric-header">Automatización y Respuesta</h4>
+          <p class="text-center" id="automatizacion"></p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="metric-card bg-light">
+          <h4 class="metric-header">Escalabilidad</h4>
+          <canvas id="escalabilidadChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+        <!-- Evolución y Adaptación -->
+        <div class="col-md-4">
+            <div class="metric-card bg-light">
+                <h4 class="metric-header">Evolución y Adaptación</h4>
+                <p class="text-center" id="evolucion"></p>
+            </div>
+        </div>
+
+        <!-- Integración con DevOps -->
+        <div class="col-md-4">
+            <div class="metric-card bg-light">
+                <h4 class="metric-header">Integración con DevOps</h4>
+                <p class="text-center" id="devops"></p>
+            </div>
+        </div>
+
+        <!-- Cumplimiento y Auditoría -->
+        <div class="col-md-4">
+            <div class="metric-card bg-light">
+                <h4 class="metric-header">Cumplimiento y Auditoría</h4>
+                <p class="text-center" id="cumplimiento"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Capacitación y Adopción -->
+        <div class="col-md-12">
+            <div class="metric-card bg-light">
+                <h4 class="metric-header">Capacitación y Adopción</h4>
+                <p class="text-center" id="capacitacion"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Falcom4n</p>
+  </footer>
+
+  <!-- Dashboard Scripts -->
+  <script>
+    const coberturaDeteccion = 88;
+    const tasaFalsosPositivos = 40;
+    const tasaFalsosNegativos = 20;
+    const tiempoRespuesta = 1000;
+    const automatizacion = 80;
+
+    const escalabilidad = 90;      
+    const evolucionAdaptacion = 75; 
+    const integracionDevOps = 65;  
+    const cumplimientoAuditoria = 95; 
+    const capacitacionAdopcion = 60;
+
+    new Chart(document.getElementById('deteccionChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Cobertura', 'Falta de Cobertura'],
+        datasets: [{ data: [coberturaDeteccion, 100 - coberturaDeteccion], backgroundColor: ['#ff0000', '#00ff00'] }]
+      }
+    });
+    new Chart(document.getElementById('falsosChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Falsos Positivos', 'Falsos Negativos'],
+        datasets: [{ data: [tasaFalsosPositivos, tasaFalsosNegativos], backgroundColor: ['#ff0000', '#00ff00'] }]
+      }
+    });
+
+    document.getElementById('tiempoRespuesta').innerText = `${tiempoRespuesta} segundos`;
+    document.getElementById('automatizacion').innerText = `${automatizacion}% de Automatización`;
+    document.getElementById('evolucion').innerText = `${evolucionAdaptacion}% de Adaptación`;
+    document.getElementById('devops').innerText = `${integracionDevOps}% de Integración DevOps`;
+    document.getElementById('cumplimiento').innerText = `${cumplimientoAuditoria}% de Cumplimiento`;
+    document.getElementById('capacitacion').innerText = `${capacitacionAdopcion}% de Capacitación y Adopción`;
+
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>

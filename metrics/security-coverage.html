@@ -246,6 +246,7 @@
       <div class="mt-4 text-center">
         <button id="toggleCoverageButton" class="btn btn-primary">Coverage Based Detection Surface</button>
       </div>
+
       
       <!-- Tabla Rules Coverage -->
       <div id="rulesCoverageTable" class="table-responsive" style="display: none;">
@@ -301,8 +302,16 @@
 
   </div>
 
+  <!-- Radar Chart Section -->
+<div class="container mt-5">
+  <h3>Rules Coverage by Primary Attack Surface</h3>
+  <div style="width: 350px; height: 350px; margin: auto;">
+    <canvas id="radarChart"></canvas>
+  </div>
+</div>
 
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     // document.getElementById('toggleButton').addEventListener('click', function () {
     //   const mitreTable = document.getElementById('mitreTable');
@@ -326,6 +335,44 @@
   document.getElementById('toggleCoverageButton').addEventListener('click', function () {
     const rulesCoverageTable = document.getElementById('rulesCoverageTable');
     rulesCoverageTable.style.display = rulesCoverageTable.style.display === 'none' ? 'block' : 'none';
+  });
+
+
+  const ctx = document.getElementById('radarChart').getContext('2d');
+  
+  const radarChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ['filesystem', 'database', 'shell', 'container', 'users', 'network', 'process'], // Labels from the table
+      datasets: [{
+        label: 'Coverage (%)',
+        data: [31.58, 2.63, 2.63, 21.05, 7.89, 21.05, 13.16], // Coverage values from the table
+        backgroundColor: 'rgba(117, 182, 182, 0.5)', // Color de fondo uniforme
+        borderColor: '#75b6b6', // Color del borde uniforme
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      elements: {
+        line: {
+          tension: 0.1 // Suaviza las líneas
+        }
+      },
+      scale: {
+        ticks: {
+          beginAtZero: true,
+          max: 35, // Ajustado para cubrir el rango máximo de la tabla
+          stepSize: 5 // Escalado más claro
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'top'
+        }
+      }
+    }
   });
   </script>
 
