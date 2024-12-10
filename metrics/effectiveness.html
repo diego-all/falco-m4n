@@ -103,9 +103,12 @@ footer {
 
   <!-- Content Section -->
   <div class="container mt-5">
-    <h1>Welcome to effectiveness.</h1>
+    <h1>Effectiveness.</h1>
     <p>Calcular la efectividad de las reglas de una herramienta de seguridad como Falco implica evaluar qué tan bien las reglas detectan incidentes relevantes y evitan falsos positivos. Aquí tienes un enfoque estructurado para calcular esta efectividad:</p>
   </div>
+
+  <h1>Individual effectiveness</h1>
+  Determinar la efectividad de una regla individual en Falco implica evaluar su capacidad para cumplir con su propósito en términos de detección de amenazas específicas, 
 
 
   Se necesitan unas tasas:
@@ -117,6 +120,53 @@ footer {
   Configurar el Entorno de Pruebas
 
   Simular algunos escenarios 8Es valido?
+
+
+  
+
+
+  <h2>Definir objetivo</h2>
+
+
+  Tasa de Verdaderos Positivos (TPR)
+
+𝑇
+𝑃
+𝑅
+=
+True Positives
+True Positives
++
+False Negatives
+TPR= 
+True Positives+False Negatives
+True Positives
+​
+
+
+Cuándo es útil:
+Si el objetivo es minimizar los eventos no detectados (falsos negativos).
+
+<br>
+
+Tasa de Falsos Positivos (FPR)
+
+𝐹
+𝑃
+𝑅
+=
+False Positives
+False Positives
++
+True Negatives
+FPR= 
+False Positives+True Negatives
+False Positives
+​
+
+
+Cuándo es útil:
+Si el objetivo es minimizar el ruido en los sistemas o evitar sobrecarga de alertas para los analistas.
 
 
 
