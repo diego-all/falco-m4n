@@ -42,6 +42,10 @@
             display: none;
             margin-top: 20px;
         }
+        .rules-thirdparty {
+            display: none;
+            margin-top: 20px;
+        }
         .rules-list {
             display: flex;
             justify-content: center;
@@ -219,6 +223,67 @@
       </div>
   </div>
 
+
+
+  <h2 class="text-center my-4">IRT Alert Flow Rules</h2>
+
+  <div class="row justify-content-center">
+      <div class="col-md-3">
+          <div class="metric-card">
+              <h4 class="metric-header">Total IRT_Alert Rules</h4>
+              <p class="metric-value">8</p>
+          </div>
+      </div>
+
+      <div class="col-md-3">
+          <div class="metric-card">
+              <h4 class="metric-header">New IRT Alert Flow Rules</h4>
+              <p class="metric-value">8</p>
+          </div>
+      </div>
+  </div>
+
+  <div class="text-center">
+      <button class="btn btn-primary" onclick="toggleRulesParty()">View IRT_Alert Rules</button>
+  </div>
+
+  <div class="rules-thirdparty" id="rulesThirdParty">
+      <h4 class="text-center my-3">Reglas</h4>
+      <div class="rules-list">
+          <div>
+              <h5>Reglas Custom</h5>
+              <div class="rule"> Kubernetes malicious tools [custom]</div>
+              <div class="rule"> SQL injection tools detected in Container [custom]</div>
+              <div class="rule"> Scanner or automated tools launched in container [custom]</div>
+              <div class="rule"> Connect to VPN/Tunnel or Proxy Server [ThirdParty1004]</div>
+              <div class="rule"> kubectl suspicious dommand launched in a container [custom]</div>
+              <div class="rule"> Load tester/benchmarking utility detect inside a container [custom]</div>
+              <div class="rule"> Web Scanner Process detected inside a container [custom]</div>
+              <div class="rule"> Enhanced Suspicious Network tools in cluster [custom]</div>
+          </div>
+      </div>
+  </div>
+
+  <div class="rules-thirdparty" id="rulesThirdParty"></div>
+    <h4 class="text-center my-3">Reglas</h4>
+    <div class="rules-list">
+        <div>
+            <h5>Reglas Custom</h5>
+            <div class="rule"> Kubernetes malicious tools [custom]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 SQL injection tools detected in Container [custom]</div>
+            <div class="rule"> Scanner or automated tools launched in container [custom]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 Connect to VPN/Tunnel or Proxy Server [ThirdParty1004]</div>
+            <div class="rule"> kubectl suspicious dommand launched in a container [custom]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 Load tester/benchmarking utility detect inside a container [custom]</div>
+            <div class="rule"> Web Scanner Process detected inside a container [custom]</div>
+            <div class="rule"> Enhanced Suspicious Network tools in cluster [custom]</div>
+        </div>
+    </div>
+</div>
+
+
+
+
   <!-- Footer -->
 <footer>
   <p>Falco Team</p>
@@ -233,6 +298,11 @@
     function toggleRules() {
       const rulesContainer = document.getElementById('rulesContainer');
       rulesContainer.style.display = rulesContainer.style.display === 'none' || !rulesContainer.style.display ? 'block' : 'none';
+    }
+
+    function toggleRulesParty() {
+      const rulesThirdParty = document.getElementById('rulesThirdParty');
+      rulesThirdParty.style.display = rulesThirdParty.style.display === 'none' || !rulesThirdParty.style.display ? 'block' : 'none';
     }
 
 
