@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Falcom4n</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     .navbar-center {
@@ -14,6 +15,50 @@
     .navbar-end {
       margin-left: auto;
     }
+    #conventions {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        #conventions h3 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        #conventions .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #conventions button {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        #conventions button:hover {
+            background-color: #0056b3;
+        }
+
+        #conventions-info {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #333;
+        max-width: 400px;
+        text-align: center; /* Asegura que el texto esté centrado */
+        margin-left: auto; /* Centrado horizontal */
+        margin-right: auto; /* Centrado horizontal */
+        }
+        
 footer {
         background-color: #000000;
         color: white;
@@ -205,62 +250,237 @@ footer {
                         <td>solved</td>
                     </tr>
                     <!-- Add the remaining rules similarly -->
+                    <tr>
+                      <td>Packet socket created in container</td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>No</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>solved</td>
+                    </tr>
+                    <tr>
+                      <td>Container Drift Detected (chmod)</td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>No</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>solved</td>
+                    </tr>
+                    <tr>
+                      <td>Container Drift Detected (open+create)</td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>No</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>solved</td>
+                    </tr>
+                    <tr>
+                      <td>Outbound Connection to C2 Servers </td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>Si</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>solved</td>
+                    </tr>
+                    <tr>
+                      <td>Linux Kernel Module Injection Detected</td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>Si</td>
+                      <td>4</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>solved</td>
+                    </tr>
+                    <tr>
+                      <td>Sudo Potential Privilege Escalation</td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>Si</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>solved</td>
+                    </tr>
+                    <tr>
+                      <td>Debugfs Launched in Privileged Container</td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>Si</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>solved</td>
+                    </tr>
+                    <tr>
+                      <td>Unprivileged Delegation of Page Faults Handling to a Userspace Process</td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>No</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>solved</td>
+                    </tr>
+                    <tr>
+                      <td>Polkit Local Privilege Escalation Vulnerability (CVE-2021-4034)</td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>Si</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>solved</td>
+                    </tr>
+                    <tr>
+                      <td>Detect release_agent File Container Escapes</td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>Si</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>solved</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
+<div style="width: 80%; margin: auto;"></div>
+  <canvas id="falcoChart"></canvas>
+</div>
 
-  
-
-
-  <h2>Definir objetivo</h2>
-
-
-  Tasa de Verdaderos Positivos (TPR)
-
-𝑇
-𝑃
-𝑅
-=
-True Positives
-True Positives
-+
-False Negatives
-TPR= 
-True Positives+False Negatives
-True Positives
-​
+<div id="conventions">
+  <h3>Convenciones</h3>
+  <button onclick="showInfo('annualEvents')">Eventos Anuales</button>
+  <button onclick="showInfo('truePositives')">Tasa de Verdaderos Positivos</button>
+  <button onclick="showInfo('falsePositives')">Tasa de Falsos Positivos</button>
+  <div id="conventions-info"></div>
+</div>
 
 
-Cuándo es útil:
-Si el objetivo es minimizar los eventos no detectados (falsos negativos).
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<br>
+<script>
+  const ctx = document.getElementById('falcoChart').getContext('2d');
+  const tooltip = document.getElementById('tooltip');
+  const conventionsInfo = document.getElementById('conventions-info');
 
-Tasa de Falsos Positivos (FPR)
+  function showInfo(metric) {
+            let info = '';
+            switch (metric) {
+                case 'annualEvents':
+                    info = 'Los Eventos Anuales representan el número total de ocurrencias de cada regla durante el último año.';
+                    break;
+                case 'truePositives':
+                    info = 'La Tasa de Verdaderos Positivos indica el porcentaje de eventos anuales que fueron clasificados correctamente como positivos.';
+                    break;
+                case 'falsePositives':
+                    info = 'La Tasa de Falsos Positivos indica el porcentaje de eventos anuales que fueron clasificados incorrectamente como positivos.';
+                    break;
+            }
+            conventionsInfo.innerHTML = info;
+        }
 
-𝐹
-𝑃
-𝑅
-=
-False Positives
-False Positives
-+
-True Negatives
-FPR= 
-False Positives+True Negatives
-False Positives
-​
+  // Data extracted from the table
+  const rules = [
+      "Directory traversal monitored file read",
+      "Read sensitive file trusted after startup",
+      "Program run with disallowed http proxy env",
+      "Search Private Keys or Passwords",
+      "Remove Bulk Data from Disk",
+      "Detect crypto miners using the Stratum protocol",
+      "Packet socket created in container",
+      "Container Drift Detected (chmod)",
+      "Container Drift Detected (open+create)",
+      "Outbound Connection to C2 Servers",
+      "Linux Kernel Module Injection Detected",
+      "Sudo Potential Privilege Escalation",
+      "Debugfs Launched in Privileged Container",
+      "Unprivileged Delegation of Page Faults Handling",
+      "Polkit Local Privilege Escalation (CVE-2021-4034)",
+      "Detect release_agent File Container Escapes"
+  ];
 
+  const annualEvents = [4, 2, 0, 2, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0];
+  const truePositives = [2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0];
+  const falsePositives = [2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0];
 
-Cuándo es útil:
-Si el objetivo es minimizar el ruido en los sistemas o evitar sobrecarga de alertas para los analistas.
+  // Calculate TP and FP rates (percentage of annual events)
+  const tpRate = annualEvents.map((events, index) => events > 0 ? (truePositives[index] / events) * 100 : 0);
+  const fpRate = annualEvents.map((events, index) => events > 0 ? (falsePositives[index] / events) * 100 : 0);
 
+  // Create the Chart
+  const falcoChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: rules,
+          datasets: [
+              {
+                  label: 'Annual Events',
+                  data: annualEvents,
+                  backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1
+              },
+              {
+                  label: 'True Positive Rate (%)',
+                  data: tpRate,
+                  backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 1
+              },
+              {
+                  label: 'False Positive Rate (%)',
+                  data: fpRate,
+                  backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                  borderColor: 'rgba(255, 99, 132, 1)',
+                  borderWidth: 1
+              }
+          ]
+      },
+      options: {
+          responsive: true,
+          plugins: {
+              tooltip: {
+                  mode: 'index',
+                  intersect: false
+              },
+              legend: {
+                  position: 'top'
+              }
+          },
+          scales: {
+              x: {
+                  beginAtZero: true,
+                  ticks: {
+                      autoSkip: false,
+                      maxRotation: 45,
+                      minRotation: 45
+                  }
+              },
+              y: {
+                  beginAtZero: true,
+                  title: {
+                      display: true,
+                      text: 'Count / Percentage'
+                  }
+              }
+          }
+      }
+  });
+</script>
 
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 <!-- Footer -->
 <footer>
