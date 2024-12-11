@@ -122,6 +122,96 @@ footer {
   Simular algunos escenarios 8Es valido?
 
 
+  <div class="container mt-5">
+    <h1 class="text-center">Rules Dashboard</h1>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#rulesTable" aria-expanded="false" aria-controls="rulesTable">
+        Mostrar Tabla de Reglas
+    </button>
+
+    <div class="collapse mt-3" id="rulesTable">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Rule</th>
+                        <th>Alert Status</th>
+                        <th>Bee Queen</th>
+                        <th>Behavior</th>
+                        <th>Annual Events</th>
+                        <th>True Positive (TP)</th>
+                        <th>False Positive (FP)</th>
+                        <th>Mala Practica (Vulnman)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Directory traversal monitored file read</td>
+                        <td>IRT_Alert</td>
+                        <td></td>
+                        <td>Si</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>solved</td>
+                    </tr>
+                    <tr>
+                        <td>Read sensitive file trusted after startup</td>
+                        <td>IRT_Alert</td>
+                        <td></td>
+                        <td>Si</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>solved</td>
+                    </tr>
+                    <tr>
+                        <td>Program run with disallowed http proxy env</td>
+                        <td>IRT_Alert</td>
+                        <td></td>
+                        <td>Si</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>solved</td>
+                    </tr>
+                    <tr>
+                        <td>Search Private Keys or Passwords</td>
+                        <td>IRT_Alert</td>
+                        <td></td>
+                        <td>Si</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>solved</td>
+                    </tr>
+                    <tr>
+                        <td>Remove Bulk Data from Disk</td>
+                        <td>IRT_Alert</td>
+                        <td></td>
+                        <td>Si</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>solved</td>
+                    </tr>
+                    <tr>
+                        <td>Detect crypto miners using the Stratum protocol</td>
+                        <td>IRT_Alert</td>
+                        <td></td>
+                        <td>Si</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>solved</td>
+                    </tr>
+                    <!-- Add the remaining rules similarly -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
   
 
 
