@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Falcom4n</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .navbar-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .navbar-end {
+      margin-left: auto;
+    }
+    .metric-card {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    .metric-header {
+            color: #343a40;
+        }
+    .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            margin: 10px 0;
+        }
+    .chart-container {
+            position: relative;
+            height: 400px; /* Ajuste de altura para visibilidad */
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .rules-container {
+            display: none;
+            margin-top: 20px;
+        }
+        .rules-thirdparty {
+            display: none;
+            margin-top: 20px;
+        }
+        .rules-list {
+            display: flex;
+            justify-content: center;
+        }
+        .rule {
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            margin: 5px;
+        }
+        .title-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .title-text {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 64px;
+            font-weight: bold;
+        }
+        .title-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    footer {
+        background-color: #000000;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+    footer img {
+        max-width: 100px;
+        margin-bottom: 10px;
+    }
+    footer p {
+        margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Falcom4n</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav navbar-center">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="infoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Info
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="infoDropdown">
+              <li><a class="dropdown-item" href="#">What Is Falco</a></li>
+              <li><a class="dropdown-item" href="#">Why Falco</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="rulesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Rules
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="rulesDropdown">
+              <li><a class="dropdown-item" href="community-rules.html">Community Rules</a></li>
+              <li><a class="dropdown-item" href="custom-rules.html">Custom Rules</a></li>
+              <li><a class="dropdown-item" href="vendor-rules.html">Vendor Rules</a></li>
+              <li><a class="dropdown-item" href="irt-alert-rules.html">IRT_Alert Rules</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="metricsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Metrics
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="metricsDropdown">
+              <li><a class="dropdown-item" href="statistics.html">Statistics</a></li>
+              <li><a class="dropdown-item" href="security-coverage.html">Security Coverage</a></li>
+              <li><a class="dropdown-item" href="maturity.html">Maturity</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="securityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Security
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="securityDropdown">
+              <li><a class="dropdown-item" href="#">Threats</a></li>
+              <li><a class="dropdown-item" href="#">Bypasses</a></li>
+              <li><a class="dropdown-item" href="#">Challenges</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-end">
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content Section -->
+  <div class="container mt-5">
+    <h1>Welcome to statistics</h1>
+    <p>This is a simple landing page template with a responsive navbar using Bootstrap 5.</p>
+  </div>
+
+
+  <h2 class="text-center my-4">IRT Alert Flow Rules</h2>
+
+  <div class="text-center">
+      <button class="btn btn-primary" onclick="toggleRulesParty()">View All IRT_Alert Rules</button>
+  </div>
+
+  <div class="rules-thirdparty" id="rulesThirdParty">
+      <h4 class="text-center my-3">Reglas</h4>
+      <div class="rules-list">
+          <div>
+            <h5>All IRT_Alert Rules</h5>
+            <div class="rule">Directory traversal monitored file read [vendor]</div>
+            <div class="rule">Read ssh information [vendor]</div>
+            <div class="rule">Read sensitive file trusted after startup  [vendor]</div>
+            <div class="rule">Write below rpm database [vendor]</div>
+            <div class="rule">DB program spawned process [vendor]</div>
+            <div class="rule">Program run with disallowed http proxy env [vendor]</div>
+            <div class="rule">Netcat Remote Code Execution in Container</div>
+            <div class="rule">Launch Suspicious Network Tool in Container [vendor]</div>
+            <div class="rule">Launch Suspicious Network Tool on Host [vendor]</div>
+            <div class="rule">Search Private Keys or Passwords [vendor]</div>
+            <div class="rule">Remove Bulk Data from Disk [vendor]</div>
+            <div class="rule">Launch Remote File Copy Tools in Container [vendor]</div>
+            <div class="rule">Detect crypto miners using the Stratum protocol [vendor]</div>
+            <div class="rule">Packet socket created in container [vendor]</div>
+            <div class="rule">Container Drift Detected (chmod) [vendor]</div>
+            <div class="rule">Container Drift Detected (open+create) [vendor]</div>
+            <div class="rule">Outbound Connection to C2 Servers [vendor]</div>
+            <div class="rule">Linux Kernel Module Injection Detected [vendor]</div>
+            <div class="rule">Sudo Potential Privilege Escalation [vendor]</div>
+            <div class="rule">Debugfs Launched in Privileged Container [vendor]</div>
+            <div class="rule">Unprivileged Delegation of Page Faults Handling to a Userspace Process [vendor]</div>
+            <div class="rule">Polkit Local Privilege Escalation Vulnerability (CVE-2021-4034) [vendor]</div>
+            <div class="rule">Detect release_agent File Container Escapes [vendor]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 Kubernetes malicious tools [custom]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 Kubernetes malicious tools [custom]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 SQL injection tools detected in Container [custom]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 Scanner or automated tools launched in container [custom]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 Connect to VPN/Tunnel or Proxy Server [custom]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 kubectl suspicious dommand launched in a container [custom]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 Load tester/benchmarking utility detect inside a container [custom]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 Web Scanner Process detected inside a container [custom]</div>
+            <div class="rule" style="color: green; font-weight: bold;">🆕 Enhanced Suspicious Network tools in cluster [custom]</div>
+          </div>
+      </div>
+  </div>
+
+
+
+
+
+  <!-- Footer -->
+<footer>
+  <p>Falco Team</p>
+  <p>Mercado Libre - Observability Security</p>
+  <p>&copy; 2024</p>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+
+    function toggleRules() {
+      const rulesContainer = document.getElementById('rulesContainer');
+      rulesContainer.style.display = rulesContainer.style.display === 'none' || !rulesContainer.style.display ? 'block' : 'none';
+    }
+
+    function toggleRulesParty() {
+      const rulesThirdParty = document.getElementById('rulesThirdParty');
+      rulesThirdParty.style.display = rulesThirdParty.style.display === 'none' || !rulesThirdParty.style.display ? 'block' : 'none';
+    }
+
+
+    const rulesData = {
+        'Vendor': 37,
+        'Custom': 24,
+        'ThirdParty': 7,
+        'AuditLogs': 42
+    };
+
+    const labels = Object.keys(rulesData);
+    const dataRules = Object.values(rulesData);
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Rules Activity',
+            data: dataRules,
+            backgroundColor: 'rgba(0, 123, 255, 0.5)',
+            borderColor: 'rgba(0, 123, 255, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    };
+
+    new Chart(
+        document.getElementById('rulesChart'),
+        config
+    );
+  </script>
+</body>
+</html>
