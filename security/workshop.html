@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Falcom4n - Ecommerce Security</title>
+  <title>Falcom4n</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     .navbar-center {
@@ -13,19 +13,6 @@
     }
     .navbar-end {
       margin-left: auto;
-    }
-    footer {
-      background-color: #000000;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
-    footer img {
-      max-width: 100px;
-      margin-bottom: 10px;
-    }
-    footer p {
-      margin: 0;
     }
     .hero {
       background: linear-gradient(to right, #1e1e2f, #373750);
@@ -41,38 +28,36 @@
       font-size: 1.2rem;
       margin: 20px 0;
     }
-    .category {
+    .scenario {
       text-align: center;
-      padding: 30px 20px;
-      border: 2px solid cyan;
-      border-radius: 8px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      background-color: rgba(0, 255, 255, 0.1);
+      margin-bottom: 30px;
     }
-    .category:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
-      background-color: rgba(0, 255, 255, 0.2);
-    }
-    .category img {
-      max-width: 80px;
+    .scenario img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
       margin-bottom: 15px;
     }
-    .category h2 {
+    .scenario h4 {
       font-size: 1.5rem;
-      margin: 10px 0;
-      color: cyan;
+      margin-bottom: 10px;
     }
-    .category p {
+    .scenario p {
       font-size: 1rem;
       color: #555;
     }
-    .category a {
-      display: inline-block;
-      margin-top: 10px;
-      color: cyan;
-      text-decoration: none;
-      font-weight: bold;
+footer {
+        background-color: #000000;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+    footer img {
+        max-width: 100px;
+        margin-bottom: 10px;
+    }
+    footer p {
+        margin: 0;
     }
   </style>
 </head>
@@ -150,58 +135,41 @@
     </div>
   </nav>
 
+
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Protecting M3l1 Kubernetes Workloads with Falco
-    </h1>
-    <p>Falco Runtime Security: The ultimate solution for monitoring, detecting, and responding to suspicious activity in Kubernetes environments.</p>
+    <h1>Falco Workshop</h1>
+    <p>Enhance your security skills by exploring Falco's detection capabilities and best practices.</p>
   </section>
 
-  <!-- Categories Section -->
+  <!-- Security Scenarios Section -->
   <div class="container my-5">
-    <div class="row text-center">
-      <div class="col-md-6">
-        <div class="category">
-          <img src="icons/rules-icon.png" alt="Rules Icon">
-          <h2>Rules</h2>
-          <p>Explore and customize rules to detect and respond to suspicious activities.</p>
-          <a href="rules/community-rules.html">Learn More</a>
-        </div>
+    <h2 class="text-center mb-4">Security Scenarios detected by Falco</h2>
+    <div class="row">
+      <div class="col-md-4 scenario">
+        <img src="https://via.placeholder.com/400x300" alt="Scenario 1">
+        <h4>Rootkit infection detection</h4>
+        <p>Detects when sensitive files are accessed outside normal operations.</p>
       </div>
-      <div class="col-md-6">
-        <div class="category">
-          <img src="icons/metrics-icon.png" alt="Metrics Icon">
-          <h2>Metrics</h2>
-          <p>Monitor critical metrics to ensure the runtime security of your environment.</p>
-          <a href="metrics/statistics.html">Learn More</a>
-        </div>
+      <div class="col-md-4 scenario">
+        <img src="https://via.placeholder.com/400x300" alt="Scenario 2">
+        <h4>Privilege Escalation on hunting activities</h4>
+        <p>Identifies attempts to break out of the container environment.</p>
       </div>
-      <div class="col-md-6 mt-4">
-        <div class="category">
-          <img src="icons/security-icon.png" alt="Security Icon">
-          <h2>Security</h2>
-          <p>Learn about threats, bypasses, and challenges to secure your system.</p>
-          <a href="security/threats.html">Learn More</a>
-        </div>
-      </div>
-      <div class="col-md-6 mt-4">
-        <div class="category">
-          <img src="icons/workshop-icon.png" alt="Workshop Icon">
-          <h2>Workshops</h2>
-          <p>Join our workshops to deepen your knowledge of Falco's capabilities.</p>
-          <a href="security/workshop.html">Learn More</a>
-        </div>
+      <div class="col-md-4 scenario">
+        <img src="https://via.placeholder.com/400x300" alt="Scenario 3">
+        <h4>Suply Chain detected</h4>
+        <p>Monitors and flags attempts to gain unauthorized administrative access.</p>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<!-- Footer -->
+<footer>
     <p>Falco Team</p>
     <p>Mercado Libre - Observability Security</p>
     <p>&copy; 2024</p>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+</footer>
 </html>
