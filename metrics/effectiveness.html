@@ -58,7 +58,7 @@
         margin-left: auto; /* Centrado horizontal */
         margin-right: auto; /* Centrado horizontal */
         }
-        
+
 footer {
         background-color: #000000;
         color: white;
@@ -71,6 +71,12 @@ footer {
     }
     footer p {
         margin: 0;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      width: 50%; /* Ajusta el ancho según tus necesidades */
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -146,152 +152,61 @@ footer {
     </div>
   </nav>
 
+
   <!-- Content Section -->
   <div class="container mt-5">
-    <h1>Effectiveness.</h1>
+    <h1>Effectiveness</h1>
     <p>Calcular la efectividad de las reglas de una herramienta de seguridad como Falco implica evaluar qué tan bien las reglas detectan incidentes relevantes y evitan falsos positivos. Aquí tienes un enfoque estructurado para calcular esta efectividad:</p>
-  </div>
+  
+    <div class="container mt-5">
+      <h1 class="text-center"></h1>
+      <div class="button-container">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#rulesTable" aria-expanded="false" aria-controls="rulesTable">
+          View effectiveness metrics
+        </button>
+      </div>
+  
+    </div>
 
-  <h1>Individual effectiveness</h1>
-  Determinar la efectividad de una regla individual en Falco implica evaluar su capacidad para cumplir con su propósito en términos de detección de amenazas específicas, 
+    <h1>Individual effectiveness</h1>
+    Determinar la efectividad de una regla individual en Falco implica evaluar su capacidad para cumplir con su propósito en términos de detección de amenazas específicas, 
+  
+  
+    Se necesitan unas tasas:
+  
+    True Positive Rate - TPR por ende se requiere informacion que no se tiene a dia de hoy. Depende de una sinergia con IRT)
+  
+    Se puede utilizar un approach basado en una muaestra.
+  
+    Configurar el Entorno de Pruebas
+  
+    Simular algunos escenarios 8Es valido?
+
+    <br>
+    <br>
 
 
-  Se necesitan unas tasas:
+    Si la grafica se ve muy pequeña puede salir del contenedor para que ocupe todo el ancho
 
-  True Positive Rate - TPR por ende se requiere informacion que no se tiene a dia de hoy. Depende de una sinergia con IRT)
-
-  Se puede utilizar un approach basado en una muaestra.
-
-  Configurar el Entorno de Pruebas
-
-  Simular algunos escenarios 8Es valido?
-
-
-  <div class="container mt-5">
-    <h1 class="text-center">Rules Dashboard</h1>
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#rulesTable" aria-expanded="false" aria-controls="rulesTable">
-        Mostrar Tabla de Reglas
-    </button>
 
     <div class="collapse mt-3" id="rulesTable">
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Rule</th>
-                        <th>Alert Status</th>
-                        <th>Bee Queen</th>
-                        <th>Behavior</th>
-                        <th>Annual Events</th>
-                        <th>True Positive (TP)</th>
-                        <th>False Positive (FP)</th>
-                        <th>Mala Practica (Vulnman)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Directory traversal monitored file read</td>
-                        <td>IRT_Alert</td>
-                        <td></td>
-                        <td>Si</td>
-                        <td>4</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>solved</td>
-                    </tr>
-                    <tr>
-                        <td>Read sensitive file trusted after startup</td>
-                        <td>IRT_Alert</td>
-                        <td></td>
-                        <td>Si</td>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>2</td>
-                        <td>solved</td>
-                    </tr>
-                    <tr>
-                        <td>Program run with disallowed http proxy env</td>
-                        <td>IRT_Alert</td>
-                        <td></td>
-                        <td>Si</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>solved</td>
-                    </tr>
-                    <tr>
-                        <td>Search Private Keys or Passwords</td>
-                        <td>IRT_Alert</td>
-                        <td></td>
-                        <td>Si</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>solved</td>
-                    </tr>
-                    <tr>
-                        <td>Remove Bulk Data from Disk</td>
-                        <td>IRT_Alert</td>
-                        <td></td>
-                        <td>Si</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>solved</td>
-                    </tr>
-                    <tr>
-                        <td>Detect crypto miners using the Stratum protocol</td>
-                        <td>IRT_Alert</td>
-                        <td></td>
-                        <td>Si</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>solved</td>
-                    </tr>
-                    <!-- Add the remaining rules similarly -->
-                    <tr>
-                      <td>Packet socket created in container</td>
-                      <td>IRT_Alert</td>
-                      <td></td>
-                      <td>No</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>solved</td>
-                    </tr>
-                    <tr>
-                      <td>Container Drift Detected (chmod)</td>
-                      <td>IRT_Alert</td>
-                      <td></td>
-                      <td>No</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>solved</td>
-                    </tr>
-                    <tr>
-                      <td>Container Drift Detected (open+create)</td>
-                      <td>IRT_Alert</td>
-                      <td></td>
-                      <td>No</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>solved</td>
-                    </tr>
-                    <tr>
-                      <td>Outbound Connection to C2 Servers </td>
-                      <td>IRT_Alert</td>
-                      <td></td>
-                      <td>Si</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>solved</td>
-                    </tr>
-                    <tr>
-                      <td>Linux Kernel Module Injection Detected</td>
+      <div class="table-responsive">
+          <table class="table table-bordered">
+              <thead class="table-dark">
+                  <tr>
+                      <th>Rule</th>
+                      <th>Alert Status</th>
+                      <th>Bee Queen</th>
+                      <th>Behavior</th>
+                      <th>Annual Events</th>
+                      <th>True Positive (TP)</th>
+                      <th>False Positive (FP)</th>
+                      <th>Mala Practica (Vulnman)</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>Directory traversal monitored file read</td>
                       <td>IRT_Alert</td>
                       <td></td>
                       <td>Si</td>
@@ -299,9 +214,19 @@ footer {
                       <td>2</td>
                       <td>2</td>
                       <td>solved</td>
-                    </tr>
-                    <tr>
-                      <td>Sudo Potential Privilege Escalation</td>
+                  </tr>
+                  <tr>
+                      <td>Read sensitive file trusted after startup</td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>Si</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>solved</td>
+                  </tr>
+                  <tr>
+                      <td>Program run with disallowed http proxy env</td>
                       <td>IRT_Alert</td>
                       <td></td>
                       <td>Si</td>
@@ -309,9 +234,19 @@ footer {
                       <td>0</td>
                       <td>0</td>
                       <td>solved</td>
-                    </tr>
-                    <tr>
-                      <td>Debugfs Launched in Privileged Container</td>
+                  </tr>
+                  <tr>
+                      <td>Search Private Keys or Passwords</td>
+                      <td>IRT_Alert</td>
+                      <td></td>
+                      <td>Si</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>solved</td>
+                  </tr>
+                  <tr>
+                      <td>Remove Bulk Data from Disk</td>
                       <td>IRT_Alert</td>
                       <td></td>
                       <td>Si</td>
@@ -319,19 +254,9 @@ footer {
                       <td>0</td>
                       <td>0</td>
                       <td>solved</td>
-                    </tr>
-                    <tr>
-                      <td>Unprivileged Delegation of Page Faults Handling to a Userspace Process</td>
-                      <td>IRT_Alert</td>
-                      <td></td>
-                      <td>No</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>solved</td>
-                    </tr>
-                    <tr>
-                      <td>Polkit Local Privilege Escalation Vulnerability (CVE-2021-4034)</td>
+                  </tr>
+                  <tr>
+                      <td>Detect crypto miners using the Stratum protocol</td>
                       <td>IRT_Alert</td>
                       <td></td>
                       <td>Si</td>
@@ -339,23 +264,127 @@ footer {
                       <td>0</td>
                       <td>0</td>
                       <td>solved</td>
-                    </tr>
-                    <tr>
-                      <td>Detect release_agent File Container Escapes</td>
-                      <td>IRT_Alert</td>
-                      <td></td>
-                      <td>Si</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>solved</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                  </tr>
+                  <!-- Add the remaining rules similarly -->
+                  <tr>
+                    <td>Packet socket created in container</td>
+                    <td>IRT_Alert</td>
+                    <td></td>
+                    <td>No</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>solved</td>
+                  </tr>
+                  <tr>
+                    <td>Container Drift Detected (chmod)</td>
+                    <td>IRT_Alert</td>
+                    <td></td>
+                    <td>No</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>solved</td>
+                  </tr>
+                  <tr>
+                    <td>Container Drift Detected (open+create)</td>
+                    <td>IRT_Alert</td>
+                    <td></td>
+                    <td>No</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>solved</td>
+                  </tr>
+                  <tr>
+                    <td>Outbound Connection to C2 Servers </td>
+                    <td>IRT_Alert</td>
+                    <td></td>
+                    <td>Si</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>solved</td>
+                  </tr>
+                  <tr>
+                    <td>Linux Kernel Module Injection Detected</td>
+                    <td>IRT_Alert</td>
+                    <td></td>
+                    <td>Si</td>
+                    <td>4</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>solved</td>
+                  </tr>
+                  <tr>
+                    <td>Sudo Potential Privilege Escalation</td>
+                    <td>IRT_Alert</td>
+                    <td></td>
+                    <td>Si</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>solved</td>
+                  </tr>
+                  <tr>
+                    <td>Debugfs Launched in Privileged Container</td>
+                    <td>IRT_Alert</td>
+                    <td></td>
+                    <td>Si</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>solved</td>
+                  </tr>
+                  <tr>
+                    <td>Unprivileged Delegation of Page Faults Handling to a Userspace Process</td>
+                    <td>IRT_Alert</td>
+                    <td></td>
+                    <td>No</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>solved</td>
+                  </tr>
+                  <tr>
+                    <td>Polkit Local Privilege Escalation Vulnerability (CVE-2021-4034)</td>
+                    <td>IRT_Alert</td>
+                    <td></td>
+                    <td>Si</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>solved</td>
+                  </tr>
+                  <tr>
+                    <td>Detect release_agent File Container Escapes</td>
+                    <td>IRT_Alert</td>
+                    <td></td>
+                    <td>Si</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>solved</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
 </div>
+  
+  
 
+  </div>
+
+        
+
+
+  <!-- Content Section -->
+  <div class="container mt-5">
+    <h1>Individual effectiveness per rule</h1>
+    <p>Calcular la efectividad de las reglas de una herramienta de seguridad como Falco implica evaluar qué tan bien las reglas detectan incidentes relevantes y evitan falsos positivos. Aquí tienes un enfoque estructurado para calcular esta efectividad:</p>
+  
+    <!-- <h1>Individual effectiveness per rule</h1> -->
 <div style="width: 80%; margin: auto;"></div>
   <canvas id="falcoChart"></canvas>
 </div>
@@ -367,6 +396,12 @@ footer {
   <button onclick="showInfo('falsePositives')">Tasa de Falsos Positivos</button>
   <div id="conventions-info"></div>
 </div>
+
+  </div>
+
+
+
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -479,6 +514,11 @@ footer {
           }
       }
   });
+
+  function toggleRules() {
+      const rulesContainer = document.getElementById('rulesContainer');
+      rulesContainer.style.display = rulesContainer.style.display === 'none' || !rulesContainer.style.display ? 'block' : 'none';
+    }
 </script>
 
 </body>
