@@ -1647,10 +1647,10 @@ This rule helps detect privilege escalation attempts within containerized enviro
 
 <!-- Rule 32 -->
 <div class="rule">
-    <img src="../assets/capability-warning.svg" alt="Imagen de Regla 32">
+    <img src="../assets/containerd-CVE-2022-31030.jpg" alt="Imagen de Regla 32">
     <div class="rule-content">
         <div class="rule-summary" onclick="toggleDetail('rule32')">
-            Rule 32: volumes exec sync containerd [custom]
+            Rule 32: Suspicious Resource Exhaustion Command Detection (CVE-2022-31030) [custom]
             <span class="info-icon" onclick="event.stopPropagation()">ℹ
                 <span class="tooltip">Haz clic para desplegar más información</span>
             </span>
@@ -1663,7 +1663,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="desc32">
-                Flags when containers attempt to use capabilities that are not permitted, which may indicate a misconfiguration or a potential attack.
+                Detects suspicious command executions within containers designed to exhaust CPU and memory resources, aiming to exploit CVE-2022-31030 by triggering unbounded resource consumption via containerd's ExecSync API.
             </div>
 
             <div class="sub-section" onclick="toggleSubDetail('pertinencia32')">
@@ -1673,26 +1673,28 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="pertinencia32">
-                Monitoring capability usage helps in enforcing least privilege policies within container environments.
+                Detecting suspicious command executions aimed at exhausting CPU and memory resources is essential for protecting against attacks like CVE-2022-31030. This helps prevent malicious exploitation of the containerd ExecSync API, which can trigger unbounded resource consumption and lead to denial-of-service vulnerabilities.
             </div>
 
             <div class="sub-section">
-                <strong>Environment:</strong> Staging
+                <strong>Environment:</strong> Development
             </div>
             <div class="sub-section">
                 <strong>Rule status:</strong>
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
-                         aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
-                        75%
+                         aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                        60%
                     </div>
                 </div>
             </div>
             <div class="sub-section">
                 <strong>Tags:</strong>
-                <span class="badge bg-secondary me-2">capabilities</span>
-                <span class="badge bg-secondary">security</span>
+                <span class="badge bg-secondary me-2">host</span>
                 <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_defense_evasion</span>
+                <span class="badge bg-secondary me-2">mitre_execution</span>
             </div>
         </div>
     </div>
@@ -1726,7 +1728,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="pertinencia33">
-                detecting the use of chattr to set immutable flags is crucial for identifying attempts to lock down critical files or system configurations, which could be used by attackers to maintain persistence or evade detection. This rule helps ensure the integrity of containers and prevent unauthorized modifications that could compromise the security of the entire cluster.
+                Detecting the use of chattr to set immutable flags is crucial for identifying attempts to lock down critical files or system configurations, which could be used by attackers to maintain persistence or evade detection. This rule helps ensure the integrity of containers and prevent unauthorized modifications that could compromise the security of the entire cluster.
             </div>
 
             <div class="sub-section">
@@ -1785,7 +1787,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
             </div>
 
             <div class="sub-section">
-                <strong>Environment:</strong> Production
+                <strong>Environment:</strong> Development
             </div>
             <div class="sub-section">
                 <strong>Rule status:</strong>
@@ -1798,9 +1800,11 @@ This rule helps detect privilege escalation attempts within containerized enviro
             </div>
             <div class="sub-section">
                 <strong>Tags:</strong>
-                <span class="badge bg-secondary me-2">process_monitoring</span>
-                <span class="badge bg-secondary">anomaly_detection</span>
-                <span class="badge bg-secondary">security</span>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_defense_evasion</span>
+                <span class="badge bg-secondary me-2">mitre_execution</span>
             </div>
         </div>
     </div>
@@ -1838,7 +1842,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
             </div>
 
             <div class="sub-section">
-                <strong>Environment:</strong> Production
+                <strong>Environment:</strong> Development
             </div>
             <div class="sub-section">
                 <strong>Rule status:</strong>
@@ -1851,9 +1855,11 @@ This rule helps detect privilege escalation attempts within containerized enviro
             </div>
             <div class="sub-section">
                 <strong>Tags:</strong>
-                <span class="badge bg-secondary me-2">process_monitoring</span>
-                <span class="badge bg-secondary">anomaly_detection</span>
-                <span class="badge bg-secondary">security</span>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_defense_evasion</span>
+                <span class="badge bg-secondary me-2">mitre_execution</span>
             </div>
         </div>
     </div>
@@ -1891,7 +1897,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
             </div>
 
             <div class="sub-section">
-                <strong>Environment:</strong> Production
+                <strong>Environment:</strong> Development
             </div>
             <div class="sub-section">
                 <strong>Rule status:</strong>
@@ -1904,9 +1910,11 @@ This rule helps detect privilege escalation attempts within containerized enviro
             </div>
             <div class="sub-section">
                 <strong>Tags:</strong>
-                <span class="badge bg-secondary me-2">process_monitoring</span>
-                <span class="badge bg-secondary">anomaly_detection</span>
-                <span class="badge bg-secondary">security</span>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_defense_evasion</span>
+                <span class="badge bg-secondary me-2">mitre_execution</span>
             </div>
         </div>
     </div>
