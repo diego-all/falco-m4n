@@ -1812,10 +1812,10 @@ This rule helps detect privilege escalation attempts within containerized enviro
 
 <!-- Rule 35 -->
 <div class="rule">
-    <img src="../assets/process-name-detection.svg" alt="Imagen de Regla 35">
+    <img src="../assets/tux_popen.jpg" alt="Imagen de Regla 35">
     <div class="rule-content">
         <div class="rule-summary" onclick="toggleDetail('rule35')">
-            Rule 35: p3regrinus detection patterns (Catalogar tipo de malware) [custom]
+            Rule 35: Command chaining patterns via pipe [custom]
             <span class="info-icon" onclick="event.stopPropagation()">ℹ
                 <span class="tooltip">Haz clic para desplegar más información</span>
             </span>
@@ -1828,7 +1828,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="desc35">
-                Rootkit behaviors, backdoor behaviors inside a container.
+                Detects the use of curl commands with pipes (|) that redirect output to executables like python, which may download and execute potentially malicious scripts. This rule helps identify unsafe script execution from untrusted sources.
             </div>
 
             <div class="sub-section" onclick="toggleSubDetail('pertinencia35')">
@@ -1838,7 +1838,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="pertinencia35">
-                Monitoring for unexpected process names is critical for detecting potential intrusions in container environments.
+                Preventing the execution of malicious scripts downloaded via curl and piped to interpreters like python is essential to protect container security. This behavior is often associated with infectious processes that can compromise the system. Detecting and mitigating these patterns helps maintain the integrity of the cluster and its workloads.
             </div>
 
             <div class="sub-section">
@@ -1975,7 +1975,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
 
 <!-- Rule 38 -->
 <div class="rule">
-    <img src="../index2.html.txt" alt="Imagen de Regla 38">
+    <img src="../assets/shell-760x460.jpg" alt="Imagen de Regla 38">
     <div class="rule-content">
         <div class="rule-summary" onclick="toggleDetail('rule38')">
             Rule 38: Interactive Terminal Spawned via trin|python [custom]
@@ -2005,7 +2005,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
             </div>
 
             <div class="sub-section">
-                <strong>Environment:</strong> Production
+                <strong>Environment:</strong> Staging
             </div>
             <div class="sub-section">
                 <strong>Rule status:</strong>
