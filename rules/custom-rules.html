@@ -1693,8 +1693,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 <span class="badge bg-secondary me-2">host</span>
                 <span class="badge bg-secondary">container</span>
                 <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
-                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_defense_evasion</span>
-                <span class="badge bg-secondary me-2">mitre_execution</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_execution</span>
             </div>
         </div>
     </div>
@@ -1773,7 +1772,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="desc34">
-                Identifies anomalies in process names that could indicate malicious activity or unauthorized access attempts.
+                Detects memory swap modifications, which may indicate attempts to alter system memory behavior. Such actions are often associated with performance impacts or malicious activities like cryptocurrency mining.
             </div>
 
             <div class="sub-section" onclick="toggleSubDetail('pertinencia34')">
@@ -1783,7 +1782,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="pertinencia34">
-                Monitoring for unexpected process names is critical for detecting potential intrusions in container environments.
+                Detect unauthorized memory swap modifications, which can affect system stability and performance. By monitoring these activities, the rule mitigates cybersecurity risks such as resource hijacking, privilege escalation, and malware deployment within containers.
             </div>
 
             <div class="sub-section">
@@ -1803,8 +1802,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 <span class="badge bg-secondary me-2">host</span>
                 <span class="badge bg-secondary">container</span>
                 <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
-                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_defense_evasion</span>
-                <span class="badge bg-secondary me-2">mitre_execution</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_execution</span>
             </div>
         </div>
     </div>
@@ -1858,8 +1856,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 <span class="badge bg-secondary me-2">host</span>
                 <span class="badge bg-secondary">container</span>
                 <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
-                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_defense_evasion</span>
-                <span class="badge bg-secondary me-2">mitre_execution</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_execution</span>
             </div>
         </div>
     </div>
@@ -1883,7 +1880,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="desc36">
-                Identifies anomalies in process names that could indicate malicious activity or unauthorized access attempts.
+                Detects the creation of suspicious service files associated with known cryptomining operations, such as aliyun.service or moneroocean_miner.service. This rule helps identify potential system infections by cryptominers.
             </div>
 
             <div class="sub-section" onclick="toggleSubDetail('pertinencia36')">
@@ -1893,7 +1890,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="pertinencia36">
-                Monitoring for unexpected process names is critical for detecting potential intrusions in container environments.
+                Detecting cryptomining activity is essential in containerized environments to prevent resource hijacking and performance degradation. Cryptominers can exploit compromised containers, impacting the stability and efficiency of Kubernetes clusters.
             </div>
 
             <div class="sub-section">
@@ -1913,8 +1910,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 <span class="badge bg-secondary me-2">host</span>
                 <span class="badge bg-secondary">container</span>
                 <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
-                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_defense_evasion</span>
-                <span class="badge bg-secondary me-2">mitre_execution</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_execution</span>
             </div>
         </div>
     </div>
@@ -1938,7 +1934,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="desc37">
-                Identifies anomalies in process names that could indicate malicious activity or unauthorized access attempts.
+                Detects grep activity targeting memory mappings, such as [stack] or [vdso], which may indicate attempts to analyze or manipulate a process’s memory. This behavior is often associated with code injection or process hijacking attempts.
             </div>
 
             <div class="sub-section" onclick="toggleSubDetail('pertinencia37')">
@@ -1948,7 +1944,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="pertinencia37">
-                Monitoring for unexpected process names is critical for detecting potential intrusions in container environments.
+                Monitoring memory mapping activity is important in containerized environments to detect potential code injection or process hijacking attempts. Such behavior can compromise the security of containers and the Kubernetes cluster. This rule helps identify suspicious actions that could lead to unauthorized access or system exploitation.
             </div>
 
             <div class="sub-section">
@@ -1965,9 +1961,10 @@ This rule helps detect privilege escalation attempts within containerized enviro
             </div>
             <div class="sub-section">
                 <strong>Tags:</strong>
-                <span class="badge bg-secondary me-2">process_monitoring</span>
-                <span class="badge bg-secondary">anomaly_detection</span>
-                <span class="badge bg-secondary">security</span>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_execution</span>
             </div>
         </div>
     </div>
@@ -1978,7 +1975,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
     <img src="../assets/shell-760x460.jpg" alt="Imagen de Regla 38">
     <div class="rule-content">
         <div class="rule-summary" onclick="toggleDetail('rule38')">
-            Rule 38: Interactive Terminal Spawned via trin|python [custom]
+            Rule 38: Interactive Terminal Spawned via python [custom]
             <span class="info-icon" onclick="event.stopPropagation()">ℹ
                 <span class="tooltip">Haz clic para desplegar más información</span>
             </span>
@@ -1991,7 +1988,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="desc38">
-                Identifies anomalies in process names that could indicate malicious activity or unauthorized access attempts.
+                Under construction.
             </div>
 
             <div class="sub-section" onclick="toggleSubDetail('pertinencia38')">
@@ -2001,7 +1998,7 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 </span>
             </div>
             <div class="sub-detail" id="pertinencia38">
-                Monitoring for unexpected process names is critical for detecting potential intrusions in container environments.
+                Under construction.
             </div>
 
             <div class="sub-section">
@@ -2011,16 +2008,17 @@ This rule helps detect privilege escalation attempts within containerized enviro
                 <strong>Rule status:</strong>
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
-                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
-                        85%
+                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                        50%
                     </div>
                 </div>
             </div>
             <div class="sub-section">
                 <strong>Tags:</strong>
-                <span class="badge bg-secondary me-2">process_monitoring</span>
-                <span class="badge bg-secondary">anomaly_detection</span>
-                <span class="badge bg-secondary">security</span>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">shell</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_execution</span>
             </div>
         </div>
     </div>
