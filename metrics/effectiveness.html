@@ -393,16 +393,7 @@ footer {
     <h2>Rules Effectiveness Evaluation</h2>
     <p>Falco rules enable real-time monitoring and detection of anomalous or suspicious behaviors based on a predefined set of conditions. Evaluating the effectiveness of these rules not only ensures their proper configuration but also helps optimize security coverage by identifying gaps (bypasses) in detection.</p>
   
-    <p>In this case, we are working with a total of 69 rules, divided as follows:</p>
-    <ul>
-      <li>38 vendor rules (preconfigured by the provider).</li>
-      <li>31 custom rules (tailored to the specific environment).</li>
-    </ul>
-    <p>A thorough analysis has been conducted based on the ability of the rules to detect specific behaviors by replicating conditions associated with each one. The results are as follows:</p>
-    <ul>
-      <li>31 custom rules are fully effective as they successfully detect the configured behaviors.</li>
-      <li>Out of the 38 vendor rules, only 30 are effective, while the remaining 8 fail to detect replicated behaviors.</li>
-    </ul>
+
 
     <div class="container mt-5">
       <div class="button-container mb-3">
@@ -411,6 +402,18 @@ footer {
         </button>
       </div>
       <div class="collapse" id="methodologyContainer">
+
+        <p>In this case, we are working with a total of 69 rules, divided as follows:</p>
+        <ul>
+          <li>38 Vendor rules</li>
+          <li>31 Custom rules</li>
+        </ul>
+        <p>A thorough analysis has been conducted based on the ability of the rules to detect specific behaviors by replicating conditions associated with each one. The results are as follows:</p>
+        <ul>
+          <li>31 custom rules are fully effective as they successfully detect the configured behaviors.</li>
+          <li>Out of the 38 vendor rules, only 30 are effective, while the remaining 8 fail to detect replicated behaviors.</li>
+        </ul>
+
         <p>The effectiveness of each rule was assessed using a behavior-based approach:</p>
         <ul>
           <li><strong>Understanding the rule:</strong> Comprehend the activity the rule aims to detect (e.g., unauthorized socket creation, container escape attempts, or modifications to critical files).</li>
