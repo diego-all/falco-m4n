@@ -156,7 +156,7 @@ footer {
   <!-- Content Section -->
   <div class="container mt-5">
     <h1>Effectiveness</h1>
-    <p>Falco rules enable real-time monitoring and detection of anomalous or suspicious behaviors based on a predefined set of conditions. Evaluating the effectiveness of these rules not only ensures their proper configuration but also helps optimize security coverage by identifying gaps in detection.</p>
+    <p>Falco rules enable real-time monitoring and detection of anomalous or suspicious behaviors based on a predefined set of conditions. Evaluating the effectiveness of these rules not only ensures their proper configuration but also helps optimize security coverage by identifying gaps (bypasses) in detection.</p>
   
     <h3>Rules Effectiveness Evaluation (Scenarios)</h3>
     <p>In this case, we are working with a total of 80 rules, divided as follows:</p>
@@ -231,15 +231,15 @@ footer {
     labels: ['Vendor', 'Custom'],
     datasets: [
       {
-        label: 'Levantadas (Detectadas)',
-        data: [30, 40], // Vendor levantadas, Custom levantadas
+        label: 'Probadas (Detectadas)',
+        data: [30, 31], // Vendor probadas, Custom probadas
         backgroundColor: 'rgba(75, 192, 192, 0.7)', // Color verde
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
       },
       {
-        label: 'No Levantadas (No Detectadas)',
-        data: [10, 0], // Vendor no levantadas, Custom no levantadas
+        label: 'No probadas (No Detectadas)',
+        data: [8, 0], // Vendor no probadas, Custom no probadas
         backgroundColor: 'rgba(255, 99, 132, 0.7)', // Color rojo
         borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1,
@@ -288,6 +288,7 @@ footer {
     options: options,
   });
 </script>
+
 
 </body>
 <!-- Footer -->
