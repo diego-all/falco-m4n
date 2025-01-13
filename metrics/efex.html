@@ -155,36 +155,34 @@ footer {
 
   <!-- Content Section -->
   <div class="container mt-5">
-    <h1>Evaluación de la Efectividad de las Reglas en Falco Runtime Security: Un Enfoque Basado en Comportamientos</h1>
-    <p>Calcular la efectividad de las reglas de una herramienta de seguridad como Falco implica evaluar qué tan bien las reglas detectan incidentes relevantes y evitan falsos positivos. Aquí tienes un enfoque estructurado para calcular esta efectividad:</p>
+    <h1>Effectiveness</h1>
+    <p>Falco rules enable real-time monitoring and detection of anomalous or suspicious behaviors based on a predefined set of conditions. Evaluating the effectiveness of these rules not only ensures their proper configuration but also helps optimize security coverage by identifying gaps in detection.</p>
   
-
-    Falco rules enable real-time monitoring and detection of anomalous or suspicious behaviors based on a predefined set of conditions. Evaluating the effectiveness of these rules not only ensures their proper configuration but also helps optimize security coverage by identifying gaps in detection.
-
-Evaluation Scenario
-In this case, we are working with a total of 80 rules, divided as follows:
-
-40 vendor rules (preconfigured by the provider).
-40 custom rules (tailored to the specific environment).
-A thorough analysis has been conducted based on the ability of the rules to detect specific behaviors by replicating conditions associated with each one. The results are as follows:
-
-40 custom rules are fully effective as they successfully detect the configured behaviors.
-Out of the 40 vendor rules, only 30 are effective, while the remaining 10 fail to detect replicated behaviors.
-This allows us to infer that, while preconfigured rules provide a good starting point, customized rules tend to be more effective since they are specifically designed to address the needs of the environment.
-
-Evaluation Methodology
-The effectiveness of each rule was assessed using a behavior-based approach:
-
-Understanding the rule: Comprehend the activity the rule aims to detect (e.g., unauthorized socket creation, container escape attempts, or modifications to critical files).
-Behavior replication: Simulate the conditions the rule is designed to detect, ensuring these correspond to real or potential attack scenarios.
-Validation: Observe whether Falco generates alerts when replicating the behavior. This helps determine whether the rule is effective or requires adjustments.
-
-
+    <h3>Rules Effectiveness Evaluation (Scenarios)</h3>
+    <p>In this case, we are working with a total of 80 rules, divided as follows:</p>
+    <ul>
+      <li>38 vendor rules (preconfigured by the provider).</li>
+      <li>31 custom rules (tailored to the specific environment).</li>
+    </ul>
+    <p>A thorough analysis has been conducted based on the ability of the rules to detect specific behaviors by replicating conditions associated with each one. The results are as follows:</p>
+    <ul>
+      <li>31 custom rules are fully effective as they successfully detect the configured behaviors.</li>
+      <li>Out of the 38 vendor rules, only 30 are effective, while the remaining 8 fail to detect replicated behaviors.</li>
+    </ul>
+    <p>This allows us to infer that, while preconfigured rules provide a good starting point, customized rules tend to be more effective since they are specifically designed to address the needs of the environment.</p>
+  
+    <h2>Evaluation Methodology</h2>
+    <p>The effectiveness of each rule was assessed using a behavior-based approach:</p>
+    <ul>
+      <li><strong>Understanding the rule:</strong> Comprehend the activity the rule aims to detect (e.g., unauthorized socket creation, container escape attempts, or modifications to critical files).</li>
+      <li><strong>Behavior replication:</strong> Simulate the conditions the rule is designed to detect, ensuring these correspond to real or potential attack scenarios.</li>
+      <li><strong>Validation:</strong> Observe whether Falco generates alerts when replicating the behavior. This helps determine whether the rule is effective or requires adjustments.</li>
+    </ul>
 
 
 
 
-    <h1>Individual effectiveness</h1>
+    <h3>Effectiveness based on the knowledge of the rule's behavior</h3>
     Determinar la efectividad de una regla individual en Falco implica evaluar su capacidad para cumplir con su propósito en términos de detección de amenazas específicas, 
 
 
@@ -192,7 +190,7 @@ Validation: Observe whether Falco generates alerts when replicating the behavior
     <br>
 
 
-    Si la grafica se ve muy pequeña puede salir del contenedor para que ocupe todo el ancho
+    <!-- Si la grafica se ve muy pequeña puede salir del contenedor para que ocupe todo el ancho -->
 
     <div style="width: 60%; margin: auto;">
       <canvas id="falcoEffectivenessChart"></canvas>
@@ -210,21 +208,12 @@ Validation: Observe whether Falco generates alerts when replicating the behavior
 
   <!-- Content Section -->
   <div class="container mt-5">
-    <h1>Individual effectiveness per rule</h1>
-    <p>Calcular la efectividad de las reglas de una herramienta de seguridad como Falco implica evaluar qué tan bien las reglas detectan incidentes relevantes y evitan falsos positivos. Aquí tienes un enfoque estructurado para calcular esta efectividad:</p>
   
     <!-- <h1>Individual effectiveness per rule</h1> -->
 <div style="width: 80%; margin: auto;"></div>
   <canvas id="falcoChart"></canvas>
 </div>
 
-<div id="conventions">
-  <h3>Convenciones</h3>
-  <button onclick="showInfo('annualEvents')">Eventos Anuales</button>
-  <button onclick="showInfo('truePositives')">Tasa de Verdaderos Positivos</button>
-  <button onclick="showInfo('falsePositives')">Tasa de Falsos Positivos</button>
-  <div id="conventions-info"></div>
-</div>
 
   </div>
 
