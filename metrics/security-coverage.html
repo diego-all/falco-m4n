@@ -90,14 +90,15 @@
   <!-- Content Section -->
   <div class="container mt-5">
     <h1>Security Coverage</h1>
-    <p>How well Falco's rules cover potential attack vectors.</p>
+    <p>It refers to how well Falco's rules address potential attack vectors and cover different attack surfaces.</p>
+    <p>Coverage can be measured in terms of:</p>
 
 
 
         <!-- Indicador de métrica -->
         <div class="mt-5">
           <h3>Security coverage based on MITRE tactics</h3>
-          <div class="metric-label">86.66%</div>
+          <div class="metric-label">91.66%</div>
         </div>
 
     <!-- Button to Toggle MITRE Table -->
@@ -109,131 +110,134 @@
     <div id="mitreTable" class="mt-4" style="display: none;">
       <h2>Falco MITRE-MELI Rule Matrix v0.33.1</h2>
       <table>
-          <thead>
-              <tr>
-                  <th>Execution</th>
-                  <th>Persistence</th>
-                  <th>Privilege Escalation</th>
-                  <th>Defense Evasion</th>
-                  <th>Credential Access</th>
-                  <th>Discovery</th>
-                  <th>Lateral Movement</th>
-                  <th>Exfiltration</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>DB program spawned process</td>
-                  <td>Modify Shell Configuration File</td>
-                  <td>Launch Privileged Container</td>
-                  <td>Clear Log Activities</td>
-                  <td>Read sensitive file trusted after startup</td>
-                  <td>Read Shell Configuration File</td>
-                  <td>Launch Privileged Container</td>
-                  <td>System procs network activity</td>
-              </tr>
-              <tr>
-                  <td>Run shell untrusted</td>
-                  <td>Schedule Cron Jobs</td>
-                  <td>Non sudo setuid</td>
-                  <td>Delete Bash History</td>
-                  <td>Read sensitive file untrusted</td>
-                  <td>Read ssh information</td>
-                  <td>Launch Sensitive Mount Container</td>
-                  <td>Interpreted procs inbound network activity</td>
-              </tr>
-              <tr>
-                  <td>Terminal shell in container</td>
-                  <td>Update Package Repository</td>
-                  <td>Search Private Keys or Passwords</td>
-                  <td>Read sensitive file untrusted</td>
-                  <td></td>
-                  <td>Launch Disallowed Container</td>
-                  <td>Interpreted procs outbound network activity</td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td>Netcat Remote Code Execution in Container</td>
-                  <td>Write below binary dir</td>
-                  <td>Write below monitored dir</td>
-                  <td></td>
-                  <td></td>
-                  <td>Contact K8S API Server From Container</td>
-                  <td>Unexpected UDP Traffic</td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td>Write below etc</td>
-                  <td>Write below root</td>
-                  <td>Write below rpm database</td>
-                  <td>Launch Suspicious Network Tool in Container</td>
-                  <td></td>
-                  <td></td>
-                  <td>Launch Suspicious Network Tool in Container</td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td>Modify binary dirs</td>
-                  <td>Mkdir binary dirs</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>Launch Suspicious Network Tool on Host</td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td>Launch Suspicious Network Tool on Host</td>
-                  <td>User mgmt binaries</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td>Create files below dev</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>Remove Bulk Data from Disk</td>
-              </tr>
-              <tr>
-                  <td>Launch Package Management Process in Container</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>Set</td>
-              </tr>
-              <tr>
-                  <td>Create Hidden Files or Directories</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td>Setuid or Setgid bit</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-          </tbody>
-      </table>
+        <tr>
+            <th>Initial Access</th>
+            <th>Execution</th>
+            <th>Persistence</th>
+            <th>Privilege Escalation</th>
+            <th>Defense Evasion</th>
+            <th>Credential Access</th>
+            <th>Discovery</th>
+            <th>Lateral Movement</th>
+            <th>Collection</th>
+            <th>Command and Control</th>
+            <th>Exfiltration</th>
+            <th>Impact</th>
+        </tr>
+        <tr>
+            <td>Java Process Class File Download</td>
+            <td>DB program spawned process</td>
+            <td>Write below rpm database</td>
+            <td>Detect release_agent File Container Escapes</td>
+            <td>Clear Log Activities</td>
+            <td>Directory traversal monitored file read</td>
+            <td>Read ssh information</td>
+            <td>Launch Sensitive Mount Container</td>
+            <td></td>
+            <td>Outbound Connection to C2 Servers</td>
+            <td>Launch Remote File Copy Tools in Container</td>
+            <td>Loadtester/benchmarking utility detected inside a container [custom]</td>
+        </tr>
+        <tr>
+            <td>Modify Container Entrypoint</td>
+            <td>Run shell untrusted</td>
+            <td>Modify binary dirs</td>
+            <td>Sudo Potential Privilege Escalation</td>
+            <td>Unprivileged Delegation of Page Faults Handling to a Userspace Process</td>
+            <td>Read sensitive file trusted after startup</td>
+            <td>Read environment variable from /proc files</td>
+            <td>Debugfs Launched in Privileged Container</td>
+            <td></td>
+            <td>Launch Ingress Remote File Copy Tools in Container</td>
+            <td>SQL Injection tools detected in Container [custom]</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Netcat Remote Code Execution in Container</td>
+            <td>Mkdir binary dirs</td>
+            <td>Polkit Local Privilege Escalation Vulnerability (CVE-2021-4034)</td>
+            <td>Connect to VPN/Tunnel or Proxy Server [custom]</td>
+            <td>Read sensitive file untrusted</td>
+            <td>Packet socket created in container</td>
+            <td>Mount Launched in Privileged Container</td>
+            <td></td>
+            <td>Connect to NGROK Service [custom]</td>
+            <td>SQL Injection patterns detected inside Container [custom]</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Detect crypto miners using the Stratum protocol</td>
+            <td>Create files below dev</td>
+            <td>Launch Excessively Capable Container</td>
+            <td>File made inmutable inside a container [custom]</td>
+            <td>Search Private Keys or Passwords</td>
+            <td>Scanner or Automated Tools launched in Container [custom]</td>
+            <td></td>
+            <td></td>
+            <td>NGROK service download/configuration/start process detected [custom]</td>
+            <td>NoSQL Injection behaviors detected inside a container [custom]</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Launch Privileged Container</td>
+            <td>Remove Bulk Data from Disk</td>
+            <td>Privilege Escalation behavior detected based bad permissions [custom]</td>
+            <td></td>
+            <td>Launch memory dump process in Container [custom]</td>
+            <td>Fuzzing tools detected in container [custom]</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Launch Suspicious Network Tool in Container</td>
+            <td>Linux Kernel Module Injection Detected</td>
+            <td>Privilege Escalation behavior detected based SUID [custom]</td>
+            <td> </td>
+            <td>MiTM behavior detected inside a container [custom]</td>
+            <td>Launch malicious Kubernetes Tools inside a Node [custom]</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Launch Suspicious Network Tool on Host</td>
+            <td></td>
+            <td>Privilege Escalation Tools/Patterns detected in Container [custom]</td>
+            <td></td>
+            <td>Keys extraction activity detected in container [custom]</td>
+            <td>Kube Suspicious Command launched in Container [custom]</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Program run with disallowed http proxy env</td>
+            <td></td>
+            <td>Container escape behaviors detected inside the container [custom]</td>
+            <td></td>
+            <td></td>
+            <td>Web Scanner process detected inside a container [custom]</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Redirect STDOUT/STDIN to Network Connection in Container</td>
+            <td></td>
+            <td>Container escape behavior based core pattern [custom]</td>
+            <td></td>
+            <td></td>
+            <td>Launch Advanced Network Toolset in container [custom]</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
 
       <br>
       <p><i>Falco MITRE-MELI Rule Matrix v0.33.1 is based on the <a href="https://sysdig.com/blog/mitre-attck-framework-for-container-runtime-security-with-sysdig-falco/" target="_blank">original MITRE Falco matrix from 2019</a> (8 tactics) and the <a href="https://www.aquasec.com/blog/mitre-attack-framework-for-containers/" target="_blank">Aqua Security version from 2021</a> (9 tactics) for Falco 0.33 deployed at MELI. The matrix will include 12 tactics, excluding Reconnaissance and Resource Development for now. (Sysdig uses the enterprise version of MITRE.)</i></p>
