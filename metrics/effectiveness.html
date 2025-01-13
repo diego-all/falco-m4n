@@ -393,7 +393,6 @@ footer {
     <h2>Rules Effectiveness Evaluation</h2>
     <p>Falco rules enable real-time monitoring and detection of anomalous or suspicious behaviors based on a predefined set of conditions. Evaluating the effectiveness of these rules not only ensures their proper configuration but also helps optimize security coverage by identifying gaps (bypasses) in detection.</p>
   
-    <h3>Rules Effectiveness Evaluation (Scenarios)</h3>
     <p>In this case, we are working with a total of 69 rules, divided as follows:</p>
     <ul>
       <li>38 vendor rules (preconfigured by the provider).</li>
@@ -416,9 +415,12 @@ footer {
 
         <!-- Si la grafica se ve muy pequeña puede salir del contenedor para que ocupe todo el ancho -->
 
-        <div style="width: 60%; margin: auto;">
-          <canvas id="falcoEffectivenessChart"></canvas>
-        </div>
+    <div style="width: 60%; margin: auto;">
+      <canvas id="falcoEffectivenessChart"></canvas>
+
+
+      <p>Las reglas no pueden ser probadas por su complejidad o requieren desplegar infraestructura vulnerable.</p>
+    </div>
 
   
   </div>
@@ -540,71 +542,75 @@ footer {
       const rulesContainer = document.getElementById('rulesContainer');
       rulesContainer.style.display = rulesContainer.style.display === 'none' || !rulesContainer.style.display ? 'block' : 'none';
     }
-</script>
 
-<script>
-  const ctx = document.getElementById('falcoEffectivenessChart').getContext('2d');
+    const ctx2 = document.getElementById('falcoEffectivenessChart').getContext('2d');
 
-  const data = {
-    labels: ['Vendor', 'Custom'],
-    datasets: [
-      {
-        label: 'Probadas (Detectadas)',
-        data: [30, 31], // Vendor probadas, Custom probadas
-        backgroundColor: 'rgba(75, 192, 192, 0.7)', // Color verde
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
+const data = {
+  labels: ['Vendor', 'Custom'],
+  datasets: [
+    {
+      label: 'Probadas (Detectadas)',
+      data: [30, 31], // Vendor probadas, Custom probadas
+      backgroundColor: 'rgba(75, 192, 192, 0.7)', // Color verde
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1,
+    },
+    {
+      label: 'No probadas (No Detectadas)',
+      data: [8, 0], // Vendor no probadas, Custom no probadas
+      backgroundColor: 'rgba(255, 99, 132, 0.7)', // Color rojo
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 1,
+    },
+  ],
+};
+
+const options = {
+  plugins: {
+    title: {
+      display: true,
+      text: 'Efectividad de Reglas Falco',
+      font: { size: 18 },
+    },
+    tooltip: {
+      callbacks: {
+        label: function(tooltipItem) {
+          return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
+        },
       },
-      {
-        label: 'No probadas (No Detectadas)',
-        data: [8, 0], // Vendor no probadas, Custom no probadas
-        backgroundColor: 'rgba(255, 99, 132, 0.7)', // Color rojo
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const options = {
-    plugins: {
+    },
+  },
+  responsive: true,
+  scales: {
+    x: {
+      stacked: true,
       title: {
         display: true,
-        text: 'Efectividad de Reglas Falco',
-        font: { size: 18 },
-      },
-      tooltip: {
-        callbacks: {
-          label: function(tooltipItem) {
-            return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
-          },
-        },
+        text: 'Tipos de Reglas',
       },
     },
-    responsive: true,
-    scales: {
-      x: {
-        stacked: true,
-        title: {
-          display: true,
-          text: 'Tipos de Reglas',
-        },
-      },
-      y: {
-        stacked: true,
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: 'Cantidad de Reglas',
-        },
+    y: {
+      stacked: true,
+      beginAtZero: true,
+      title: {
+        display: true,
+        text: 'Cantidad de Reglas',
       },
     },
-  };
+  },
+};
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: options,
-  });
+new Chart(ctx2, {
+  type: 'bar',
+  data: data,
+  options: options,
+});
+
+
+
+
+
+    
 </script>
 
 </body>
