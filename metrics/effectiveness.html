@@ -403,14 +403,22 @@ footer {
       <li>31 custom rules are fully effective as they successfully detect the configured behaviors.</li>
       <li>Out of the 38 vendor rules, only 30 are effective, while the remaining 8 fail to detect replicated behaviors.</li>
     </ul>
-  
-    <h2>Evaluation Methodology</h2>
-    <p>The effectiveness of each rule was assessed using a behavior-based approach:</p>
-    <ul>
-      <li><strong>Understanding the rule:</strong> Comprehend the activity the rule aims to detect (e.g., unauthorized socket creation, container escape attempts, or modifications to critical files).</li>
-      <li><strong>Behavior replication:</strong> Simulate the conditions the rule is designed to detect, ensuring these correspond to real or potential attack scenarios.</li>
-      <li><strong>Validation:</strong> Observe whether Falco generates alerts when replicating the behavior. This helps determine whether the rule is effective or requires adjustments.</li>
-    </ul>
+
+    <div class="container mt-5">
+      <div class="button-container mb-3">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#methodologyContainer" aria-expanded="false" aria-controls="methodologyContainer">
+          Evaluation Methodology 
+        </button>
+      </div>
+      <div class="collapse" id="methodologyContainer">
+        <p>The effectiveness of each rule was assessed using a behavior-based approach:</p>
+        <ul>
+          <li><strong>Understanding the rule:</strong> Comprehend the activity the rule aims to detect (e.g., unauthorized socket creation, container escape attempts, or modifications to critical files).</li>
+          <li><strong>Behavior replication:</strong> Simulate the conditions the rule is designed to detect, ensuring these correspond to real or potential attack scenarios.</li>
+          <li><strong>Validation:</strong> Observe whether Falco generates alerts when replicating the behavior. This helps determine whether the rule is effective or requires adjustments.</li>
+        </ul>
+      </div>
+    </div>
 
 
         <!-- Si la grafica se ve muy pequeña puede salir del contenedor para que ocupe todo el ancho -->
@@ -419,7 +427,7 @@ footer {
       <canvas id="falcoEffectivenessChart"></canvas>
 
 
-      <p>Las reglas no pueden ser probadas por su complejidad o requieren desplegar infraestructura vulnerable.</p>
+      <p>Las reglas no pueden ser probadas por su complejidad para generar el comportamiento, generalmente requieren desplegar infraestructura vulnerable y no es viable.</p>
     </div>
 
   
@@ -543,21 +551,39 @@ footer {
       rulesContainer.style.display = rulesContainer.style.display === 'none' || !rulesContainer.style.display ? 'block' : 'none';
     }
 
+        function toggleMethodology() {
+      const methodologyContainer = document.getElementById('methodologyContainer');
+      methodologyContainer.style.display = methodologyContainer.style.display === 'none' || !methodologyContainer.style.display ? 'block' : 'none';
+    }
+
     const ctx2 = document.getElementById('falcoEffectivenessChart').getContext('2d');
 
+// Cálculo de porcentajes de efectividad
+const vendorTotal = 38; // Total de reglas Vendor
+const vendorEffective = 30; // Reglas Vendor efectivas
+const vendorPercentage = ((vendorEffective / vendorTotal) * 100).toFixed(1); // Porcentaje efectivo
+
+const customTotal = 31; // Total de reglas Custom
+const customEffective = 31; // Reglas Custom efectivas
+const customPercentage = ((customEffective / customTotal) * 100).toFixed(1); // Porcentaje efectivo
+
+// Datos del gráfico
 const data = {
-  labels: ['Vendor', 'Custom'],
+  labels: [
+    `Vendor (38 reglas, ${vendorPercentage}% efectivas)`,
+    `Custom (31 reglas, ${customPercentage}% efectivas)`
+  ],
   datasets: [
     {
       label: 'Probadas (Detectadas)',
-      data: [30, 31], // Vendor probadas, Custom probadas
+      data: [vendorEffective, customEffective], // Vendor probadas, Custom probadas
       backgroundColor: 'rgba(75, 192, 192, 0.7)', // Color verde
       borderColor: 'rgba(75, 192, 192, 1)',
       borderWidth: 1,
     },
     {
       label: 'No probadas (No Detectadas)',
-      data: [8, 0], // Vendor no probadas, Custom no probadas
+      data: [vendorTotal - vendorEffective, customTotal - customEffective], // Vendor y Custom no probadas
       backgroundColor: 'rgba(255, 99, 132, 0.7)', // Color rojo
       borderColor: 'rgba(255, 99, 132, 1)',
       borderWidth: 1,
@@ -565,11 +591,12 @@ const data = {
   ],
 };
 
+// Opciones del gráfico
 const options = {
   plugins: {
     title: {
       display: true,
-      text: 'Efectividad de Reglas Falco',
+      text: 'Falco Rules Effectiveness Evaluation',
       font: { size: 18 },
     },
     tooltip: {
@@ -586,7 +613,7 @@ const options = {
       stacked: true,
       title: {
         display: true,
-        text: 'Tipos de Reglas',
+        text: 'Rule Type',
       },
     },
     y: {
@@ -594,21 +621,18 @@ const options = {
       beginAtZero: true,
       title: {
         display: true,
-        text: 'Cantidad de Reglas',
+        text: 'Rules number',
       },
     },
   },
 };
 
+// Crear el gráfico
 new Chart(ctx2, {
   type: 'bar',
   data: data,
   options: options,
 });
-
-
-
-
 
     
 </script>
