@@ -90,7 +90,7 @@
 
   <!-- Content Section -->
   <div class="container mt-5">
-    <h1>Security Coverage</h1>
+    <h1 align="center">Security Coverage</h1>
     <p>It refers to how well Falco's rules address potential attack vectors and cover different attack surfaces.</p>
     <p>Coverage can be measured in terms of:</p>
 
@@ -258,7 +258,7 @@
       <p>The selected surfaces include: filesystem, database, shell, container, users, network, and processes.</p>
 
     <div class="container my-5">
-      <h2 class="text-center">Rules Coverage</h2>
+      <!-- <h2 class="text-center">Rules Coverage</h2> -->
       
       <!-- Botón para mostrar/ocultar la tabla -->
       <div class="mt-4 text-center">
@@ -266,7 +266,7 @@
       </div>
       <div class="label">
         <span><b>Target 2025:</b></span>
-        <p>Achieve incorporating at least 3 rules per detection surface.</p>
+        <p>Achieve incorporating at least 2 rules per detection surface.</p>
         <p>Try to ensure that no detection surface is below 10%.</p>
       </div>
       
@@ -275,7 +275,7 @@
         <table class="table table-striped table-bordered text-center">
           <thead class="table-dark">
             <tr>
-              <th>Primary Attack Surface</th>
+              <th>Primary Detection Surface</th>
               <th>Number of Rules</th>
               <th>Coverage (%)</th>
             </tr>
@@ -326,7 +326,7 @@
 
   <!-- Radar Chart Section -->
 <div class="container mt-5">
-  <h3>Rules Coverage by Primary Attack Surface</h3>
+  <h3 align="center">Rules Coverage by Primary Detection Surface</h3>
   <div style="width: 350px; height: 350px; margin: auto;">
     <canvas id="radarChart"></canvas>
   </div>
