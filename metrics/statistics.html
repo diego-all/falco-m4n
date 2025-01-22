@@ -73,6 +73,13 @@
             height: 100px;
             object-fit: cover;
         }
+        .date-text {
+            display: block;
+            text-align: center;
+            margin-top: 10px; /* Ajusta el espacio superior si es necesario */
+            font-size: 14px; /* Ajusta el tamaño de la fuente si es necesario */
+            color: #555; /* Ajusta el color si es necesario */
+        }
     footer {
         background-color: #000000;
         color: white;
@@ -147,7 +154,7 @@
         </ul>
         <ul class="navbar-nav navbar-end">
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="../about.html">About</a>
           </li>
         </ul>
       </div>
@@ -161,20 +168,38 @@
   </div> -->
 
   <div class="container">
-    <div class="title-section">
+    <!-- <div class="title-section">
         <img src="https://i.ibb.co/s636MLf/falco-social.jpg" alt="Left Image" class="title-image">
         <h6 class="title-text">Falco General Statistics</h6>
         <img src="https://i.ibb.co/MMcNN7t/mercado-libre.jpg" alt="Right Image" class="title-image">
     </div>
 
+    <h7 class="date-text"> <b>January 15, 2025</b></h7> -->
+
+    <div class="container">
+      <div class="title-section">
+          <img src="https://i.ibb.co/s636MLf/falco-social.jpg" alt="Left Image" class="title-image">
+          <h1 class="title-text">Falco General Statistics</h1>
+          <img src="https://i.ibb.co/MMcNN7t/mercado-libre.jpg" alt="Right Image" class="title-image">
+      </div>
+
+      <h7 class="date-text"> <b>Last update: January 15, 2025</b></h7>
+  </div>
+
 
     <div class="row">
       <div class="col-md-12">
           <div class="metric-card">
-              <h4 class="metric-header">Total Ruleset</h4>
+              <!-- <h4 class="metric-header">Total Ruleset: 117</h4> -->
               <div class="chart-container">
                   <canvas id="rulesChart"></canvas>
               </div>
+              <h4 class="metric-header">Total Ruleset: 117</h4>
+
+              <br>
+
+              <li> Vendor, Custom & Third Party Rules source (Syscalls)</li>
+              <li> Kubernetes Audit Logs source (Kubernetes Audit Events)</li>
           </div>
       </div>
     </div>
