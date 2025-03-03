@@ -2801,6 +2801,122 @@ This rule helps detect privilege escalation attempts within containerized enviro
     </div>
 </div>
 
+
+
+<!-- Rule 53 -->
+<div class="rule">
+    <img src="../assets/ssh-tunnel-min.webp" alt="Imagen de Regla 53">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule53')">
+            Rule 53: SSH tunneling/SSH port forwarding detected inside a container [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule53">
+            <div class="sub-section" onclick="toggleSubDetail('desc53')">
+                <b>Description</b> 
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc53">
+                Detects SSH tunneling and port forwarding inside a container, which attackers may use to bypass network controls, create hidden communication channels, and access internal resources. It analyzes process names and command-line arguments to identify suspicious activity.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia53')">
+                <b>Relevance</b>
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia53">
+                Helps detect SSH tunneling and port forwarding inside containers, which attackers can use to bypass network policies, establish covert channels, and gain unauthorized access. In a Kubernetes environment, enforcing this rule mitigates security risks by preventing lateral movement and data exfiltration within the cluster.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Incubation
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                        90%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">network</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_command_control</span>
+                <span class="badge me-2" style="background-color: #fd1414; color: white;">T1572</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Rule 55 -->
+<div class="rule">
+    <img src="../assets/crowdstrike.webp" alt="Imagen de Regla 55">
+    <div class="rule-content">
+        <div class="rule-summary" onclick="toggleDetail('rule55')">
+            Rule 55: Crowdtrike Agent Disabling Attempt on a Kubernetes cluster node [custom]
+            <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                <span class="tooltip">Haz clic para desplegar más información</span>
+            </span>
+        </div>
+        <div class="rule-detail" id="rule55">
+            <div class="sub-section" onclick="toggleSubDetail('desc55')">
+                <b>Description</b>
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="desc55">
+                Detects attempts to disable or uninstall the CrowdStrike agent on a Kubernetes cluster node.
+            </div>
+
+            <div class="sub-section" onclick="toggleSubDetail('pertinencia55')">
+                <b>Relevance</b>
+                <span class="info-icon" onclick="event.stopPropagation()">ℹ
+                    <span class="tooltip">Haz clic para desplegar más información</span>
+                </span>
+            </div>
+            <div class="sub-detail" id="pertinencia55">
+                Detects attempts to disable or uninstall the CrowdStrike agent on Kubernetes nodes, a technique used for evasion to bypass security monitoring. Preventing this behavior is important to maintain threat visibility, as disabling the agent can expose nodes to undetected attacks, unauthorized access, and lateral movement within the cluster.
+            </div>
+
+            <div class="sub-section">
+                <strong>Environment:</strong> Incubation
+            </div>
+            <div class="sub-section">
+                <strong>Rule status:</strong>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">
+                        95%
+                    </div>
+                </div>
+            </div>
+            <div class="sub-section">
+                <strong>Tags:</strong>
+                <span class="badge bg-secondary me-2">host</span>
+                <span class="badge bg-secondary">container</span>
+                <span class="badge me-2" style="background-color: #17a2b8; color: white;">process</span>
+                <span class="badge me-2" style="background-color: #fd7e14; color: white;">mitre_defense_evasion</span>
+                <span class="badge me-2" style="background-color: #fd1414; color: white;">T1548</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 </body>
 <!-- Footer -->
 <footer>
